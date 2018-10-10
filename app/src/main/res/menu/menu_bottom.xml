@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/news"
+        android:icon="@drawable/ic_news"
+        android:title="资讯" />
+    <item
+        android:id="@+id/lesson"
+        android:icon="@drawable/ic_education"
+        android:title="课程" />
+    <item
+        android:id="@+id/network"
+        android:icon="@drawable/ic_network"
+        android:title="物联" />
+
+</menu>
