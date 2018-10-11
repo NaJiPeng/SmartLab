@@ -10,6 +10,9 @@ import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentTimetableBinding
 import com.njp.smartlab.ui.MainActivity
 
+/**
+ * 我的课表页面
+ */
 class TimetableFragment : Fragment() {
 
     private lateinit var binding: FragmentTimetableBinding

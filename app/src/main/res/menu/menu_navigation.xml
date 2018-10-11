@@ -17,6 +17,11 @@
         android:title="历史纪录" />
 
     <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_about"
+        android:title="关于" />
+
+    <item
         android:id="@+id/night_mode"
         android:icon="@drawable/ic_night"
         android:title="夜间模式" />

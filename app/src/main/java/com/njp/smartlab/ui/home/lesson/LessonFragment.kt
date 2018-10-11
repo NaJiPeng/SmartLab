@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentLessonBinding
 
+/**
+ * 课程信息页面
+ */
 class LessonFragment : Fragment() {
 
     private lateinit var binding: FragmentLessonBinding

@@ -12,7 +12,11 @@ import androidx.navigation.ui.NavigationUI
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentHomeBinding
 import com.njp.smartlab.ui.MainActivity
+import com.njp.smartlab.utils.ToastUtil
 
+/**
+ * 主页面
+ */
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
@@ -31,9 +35,24 @@ class HomeFragment : Fragment() {
         binding.navigationView.setNavigationItemSelectedListener {
             binding.drawerLayout.closeDrawer(Gravity.START)
             when (it.itemId) {
-                R.id.timetable -> (activity as MainActivity).navController.navigate(R.id.action_home_to_timetable)
-                R.id.files -> (activity as MainActivity).navController.navigate(R.id.action_home_to_files)
-                R.id.history -> (activity as MainActivity).navController.navigate(R.id.action_home_to_history)
+                R.id.timetable -> {
+                    (activity as MainActivity).navController.navigate(R.id.action_home_to_timetable)
+                }
+                R.id.files -> {
+                    (activity as MainActivity).navController.navigate(R.id.action_home_to_files)
+                }
+                R.id.history -> {
+                    (activity as MainActivity).navController.navigate(R.id.action_home_to_history)
+                }
+                R.id.about -> {
+                    (activity as MainActivity).navController.navigate(R.id.action_home_to_about)
+                }
+                R.id.night_mode -> {
+                    ToastUtil.getInstance().show("夜间模式")
+                }
+                R.id.logout -> {
+                    ToastUtil.getInstance().show("退出登录")
+                }
             }
             true
         }

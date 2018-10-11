@@ -5,7 +5,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#3a34a4"
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
@@ -28,7 +27,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="历史纪录"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/background_dark"
             android:textSize="30sp" />
 
 

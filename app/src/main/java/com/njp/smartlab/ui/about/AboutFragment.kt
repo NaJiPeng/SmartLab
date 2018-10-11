@@ -1,4 +1,4 @@
-package com.njp.smartlab.ui.files
+package com.njp.smartlab.ui.about
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -7,18 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.njp.smartlab.R
-import com.njp.smartlab.databinding.FragmentFilesBinding
+import com.njp.smartlab.databinding.FragmentAboutBinding
 import com.njp.smartlab.ui.MainActivity
 
 /**
- * 课程资源页面
+ * 关于页面
  */
-class FilesFragment : Fragment() {
+class AboutFragment : Fragment() {
 
-    private lateinit var binding: FragmentFilesBinding
+    private lateinit var binding: FragmentAboutBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_files, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_about, container, false)
+
 
         binding.toolbar.setNavigationOnClickListener { _->
             (activity as MainActivity).navController.navigateUp()

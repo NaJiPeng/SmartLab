@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentNetworkBinding
 
+/**
+ * 智慧物联网页面
+ */
 class NetworkFragment : Fragment() {
 
     private lateinit var binding: FragmentNetworkBinding

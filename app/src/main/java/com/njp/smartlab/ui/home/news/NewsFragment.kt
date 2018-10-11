@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentNewsBinding
 
+/**
+ * 科技资讯页面
+ */
 class NewsFragment : Fragment() {
 
     private lateinit var binding: FragmentNewsBinding

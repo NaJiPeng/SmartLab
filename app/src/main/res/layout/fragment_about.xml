@@ -17,7 +17,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:navigationIcon="@drawable/ic_back"
-                app:title="课程资源">
+                app:title="关于">
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="课程资源"
+            android:text="关于"
             android:textColor="@android:color/background_dark"
             android:textSize="30sp" />
 

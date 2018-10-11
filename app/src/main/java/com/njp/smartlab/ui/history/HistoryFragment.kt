@@ -10,6 +10,9 @@ import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentHistoryBinding
 import com.njp.smartlab.ui.MainActivity
 
+/**
+ * 历史纪录页面
+ */
 class HistoryFragment : Fragment() {
 
     private lateinit var binding: FragmentHistoryBinding
