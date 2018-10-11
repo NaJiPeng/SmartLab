@@ -7,26 +7,48 @@
 
     <fragment
         android:id="@id/home"
-        android:title="主页"
         android:name="com.njp.smartlab.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        android:title="主页"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_history"
+            app:destination="@id/history"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/anim_pop_enter"
+            app:popExitAnim="@anim/anim_pop_exit" />
+        <action
+            android:id="@+id/action_home_to_timetable"
+            app:destination="@id/timetable"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/anim_pop_enter"
+            app:popExitAnim="@anim/anim_pop_exit" />
+        <action
+            android:id="@+id/action_home_to_files"
+            app:destination="@id/files"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/anim_pop_enter"
+            app:popExitAnim="@anim/anim_pop_exit" />
+    </fragment>
 
     <fragment
         android:id="@id/timetable"
-        android:title="我的课表"
         android:name="com.njp.smartlab.ui.timetable.TimetableFragment"
+        android:title="我的课表"
         tools:layout="@layout/fragment_timetable" />
 
     <fragment
         android:id="@id/files"
-        android:title="课程资源"
         android:name="com.njp.smartlab.ui.files.FilesFragment"
+        android:title="课程资源"
         tools:layout="@layout/fragment_files" />
 
     <fragment
         android:id="@id/history"
-        android:title="历史纪录"
         android:name="com.njp.smartlab.ui.history.HistoryFragment"
+        android:title="历史纪录"
         tools:layout="@layout/fragment_history" />
 
 </navigation>

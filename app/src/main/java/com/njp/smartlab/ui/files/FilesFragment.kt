@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentFilesBinding
+import com.njp.smartlab.ui.MainActivity
 
 class FilesFragment : Fragment() {
 
@@ -16,6 +17,9 @@ class FilesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_files, container, false)
 
+        binding.toolbar.setNavigationOnClickListener { _->
+            (activity as MainActivity).navController.navigateUp()
+        }
 
         return binding.root
     }
