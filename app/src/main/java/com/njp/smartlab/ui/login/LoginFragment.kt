@@ -26,7 +26,12 @@ class LoginFragment : Fragment() {
         binding.viewModel = viewModel
         binding.setLifecycleOwner(this)
 
+        initEvent()
 
+        return binding.root
+    }
+
+    private fun initEvent() {
 
         binding.btnLogin.setOnClickListener {
             if (checkout()) {
@@ -34,7 +39,9 @@ class LoginFragment : Fragment() {
             }
         }
 
-        return binding.root
+        binding.tvRegister.setOnClickListener { _ ->
+            (activity as MainActivity).navController.navigate(R.id.action_login_to_register)
+        }
     }
 
     /**
