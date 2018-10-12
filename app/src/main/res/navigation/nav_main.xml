@@ -6,7 +6,7 @@
     app:startDestination="@id/home">
 
     <fragment
-        android:id="@id/home"
+        android:id="@+id/home"
         android:name="com.njp.smartlab.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -37,26 +37,38 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/anim_pop_enter"
             app:popExitAnim="@anim/anim_pop_exit" />
+        <action
+            android:id="@+id/action_home_to_login"
+            app:destination="@id/login"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
-        android:id="@id/timetable"
+        android:id="@+id/timetable"
         android:name="com.njp.smartlab.ui.timetable.TimetableFragment"
         tools:layout="@layout/fragment_timetable" />
 
     <fragment
-        android:id="@id/files"
+        android:id="@+id/files"
         android:name="com.njp.smartlab.ui.files.FilesFragment"
         tools:layout="@layout/fragment_files" />
 
     <fragment
-        android:id="@id/history"
+        android:id="@+id/history"
         android:name="com.njp.smartlab.ui.history.HistoryFragment"
         tools:layout="@layout/fragment_history" />
 
     <fragment
-        android:id="@id/about"
+        android:id="@+id/about"
         android:name="com.njp.smartlab.ui.about.AboutFragment"
         tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.njp.smartlab.ui.login.LoginFragment"
+        tools:layout="@layout/fragment_login" />
 
 </navigation>

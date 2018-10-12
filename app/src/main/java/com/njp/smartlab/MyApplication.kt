@@ -1,6 +1,7 @@
 package com.njp.smartlab
 
 import android.app.Application
+import com.tencent.mmkv.MMKV
 
 /**
  * Application实例
@@ -14,6 +15,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        MMKV.initialize(this)
     }
 
 }

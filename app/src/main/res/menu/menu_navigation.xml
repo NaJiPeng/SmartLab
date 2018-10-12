@@ -19,7 +19,7 @@
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_about"
-        android:title="关于" />
+        android:title="关于我们" />
 
     <item
         android:id="@+id/night_mode"

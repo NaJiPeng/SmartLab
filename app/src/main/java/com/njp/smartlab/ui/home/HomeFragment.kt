@@ -13,6 +13,7 @@ import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentHomeBinding
 import com.njp.smartlab.ui.MainActivity
 import com.njp.smartlab.utils.ToastUtil
+import com.tencent.mmkv.MMKV
 
 /**
  * 主页面
@@ -48,7 +49,14 @@ class HomeFragment : Fragment() {
                     (activity as MainActivity).navController.navigate(R.id.action_home_to_about)
                 }
                 R.id.night_mode -> {
-                    ToastUtil.getInstance().show("夜间模式")
+                    if (MMKV.defaultMMKV().decodeBool("night")) {
+                        MMKV.defaultMMKV().encode("night", false)
+                    } else {
+                        MMKV.defaultMMKV().encode("night", true)
+                    }
+                    ToastUtil.getInstance().show("夜间模式:${
+                    if (MMKV.defaultMMKV().decodeBool("night")) "开" else "关"
+                    }")
                 }
                 R.id.logout -> {
                     ToastUtil.getInstance().show("退出登录")
@@ -56,6 +64,11 @@ class HomeFragment : Fragment() {
             }
             true
         }
+
+        binding.headLayout.setOnClickListener { _ ->
+            (activity as MainActivity).navController.navigate(R.id.action_home_to_login)
+        }
+
 
         return binding.root
     }

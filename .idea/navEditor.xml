@@ -59,8 +59,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="125" />
-                            <option name="y" value="441" />
+                            <option name="x" value="255" />
+                            <option name="y" value="649" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -116,12 +116,29 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_home_to_login">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_home_to_timetable">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="login">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-72" />
+                            <option name="y" value="614" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
