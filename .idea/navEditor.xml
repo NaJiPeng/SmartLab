@@ -78,6 +78,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="forget">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-348" />
+                            <option name="y" value="622" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="history">
                     <value>
                       <LayoutPositions>
@@ -139,6 +151,15 @@
                             <option name="x" value="-313" />
                             <option name="y" value="250" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_login_to_register">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

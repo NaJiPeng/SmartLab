@@ -74,4 +74,6 @@ dependencies {
 
     implementation 'jp.wasabeef:recyclerview-animators:2.3.0'
 
+    implementation 'com.zhuangfei:TimetableView:2.0.6'
+
 }

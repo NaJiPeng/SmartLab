@@ -36,11 +36,22 @@ class LoginFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             if (checkout()) {
                 (activity as MainActivity).loadingDialog.show()
+                Thread {
+                    Thread.sleep(3000)
+                    activity?.runOnUiThread {
+                        (activity as MainActivity).loadingDialog.dismiss()
+                        (activity as MainActivity).navController.navigateUp()
+                    }
+                }.start()
             }
         }
 
         binding.tvRegister.setOnClickListener { _ ->
             (activity as MainActivity).navController.navigate(R.id.action_login_to_register)
+        }
+
+        binding.tvForget.setOnClickListener { _ ->
+            (activity as MainActivity).navController.navigate(R.id.action_login_to_forget)
         }
     }
 
@@ -49,13 +60,16 @@ class LoginFragment : Fragment() {
      */
     private fun checkout(): Boolean {
         if (viewModel.account.value.isNullOrEmpty()) {
+            binding.etAccount.requestFocus()
             binding.etAccount.error = "账号不能为空"
             return false
         }
         if (viewModel.password.value.isNullOrEmpty()) {
+            binding.etPassword.requestFocus()
             binding.etPassword.error = "密码不能为空"
             return false
         } else if (viewModel.password.value?.length ?: 0 < 6) {
+            binding.etPassword.requestFocus()
             binding.etPassword.error = "密码长度为6-18位"
             return false
         }

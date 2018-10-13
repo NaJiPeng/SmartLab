@@ -77,11 +77,23 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_login_to_forget"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:destination="@id/forget" />
     </fragment>
 
     <fragment
         android:id="@+id/register"
         android:name="com.njp.smartlab.ui.register.RegisterFragment"
         tools:layout="@layout/fragment_register" />
+
+    <fragment
+        android:id="@+id/forget"
+        android:name="com.njp.smartlab.ui.forget.ForgetFragment"
+        tools:layout="@layout/fragment_forget" />
 
 </navigation>
