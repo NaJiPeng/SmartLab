@@ -154,6 +154,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_login_to_forget">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_login_to_register">
                               <value>
                                 <LayoutPositions />
