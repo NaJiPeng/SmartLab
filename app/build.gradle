@@ -78,4 +78,6 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.5'
 
+    implementation 'cn.yipianfengye.android:zxing-library:2.2'
+
 }
