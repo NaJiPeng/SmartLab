@@ -13,9 +13,9 @@ class MMKVCookiePersistor : CookiePersistor {
     private val mmkv = MMKV.mmkvWithID("CookiePersistence")
 
     override fun loadAll(): List<Cookie> {
-        return mmkv.all.map {
-            SerializableCookie().decode(it.value as String)
-        }
+        return mmkv.allKeys()?.map {
+            SerializableCookie().decode(mmkv.decodeString(it) as String)
+        }?: ArrayList()
     }
 
     override fun saveAll(cookies: MutableCollection<Cookie>?) {

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentLoginBinding
 import com.njp.smartlab.ui.MainActivity
+import com.njp.smartlab.utils.Logger
 
 /**
  * 登录页面
@@ -34,15 +35,10 @@ class LoginFragment : Fragment() {
     private fun initEvent() {
 
         binding.btnLogin.setOnClickListener {
+            Logger.getInstance().log("click")
             if (checkout()) {
-                (activity as MainActivity).loadingDialog.show()
-                Thread {
-                    Thread.sleep(3000)
-                    activity?.runOnUiThread {
-                        (activity as MainActivity).loadingDialog.dismiss()
-                        (activity as MainActivity).navController.navigateUp()
-                    }
-                }.start()
+//                (activity as MainActivity).loadingDialog.show()
+                viewModel.login()
             }
         }
 

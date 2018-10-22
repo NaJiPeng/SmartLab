@@ -11,18 +11,14 @@ class ToastUtil private constructor() {
     companion object {
         private var instance: ToastUtil? = null
 
-        fun getInstance(): ToastUtil {
-            if (instance == null) {
-                instance = ToastUtil()
-            }
-            return instance!!
-        }
+        fun getInstance() = instance ?: ToastUtil().apply { instance = this }
     }
 
     private val toast = Toast.makeText(MyApplication.instance, "", Toast.LENGTH_SHORT)
 
     fun show(content: String) {
         toast.apply {
+            cancel()
             setText(content)
             show()
         }

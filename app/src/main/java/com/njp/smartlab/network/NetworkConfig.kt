@@ -1,6 +1,5 @@
 package com.njp.smartlab.network
 
-import com.franmontiel.persistentcookiejar.ClearableCookieJar
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import okhttp3.OkHttpClient
@@ -13,13 +12,20 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 class NetworkConfig {
 
+    companion object {
+        private var instance: NetworkConfig? = null
+
+        fun getInstance() = instance ?: NetworkConfig().apply { instance = this }
+
+    }
+
     val client = OkHttpClient.Builder()
             .cookieJar(PersistentCookieJar(SetCookieCache(), MMKVCookiePersistor()))
             .build()
 
     val retrofit = Retrofit.Builder()
             .client(client)
-            .baseUrl("http://www.xxxx.com/")
+            .baseUrl("http://47.106.34.209:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

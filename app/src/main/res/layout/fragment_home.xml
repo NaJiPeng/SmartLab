@@ -28,15 +28,11 @@
                 </android.support.v7.widget.Toolbar>
             </android.support.design.widget.AppBarLayout>
 
-            <fragment
-                android:id="@+id/fragment_bottom"
-                android:name="androidx.navigation.fragment.NavHostFragment"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                app:defaultNavHost="false"
-                app:navGraph="@navigation/nav_bottom"
-                tools:layout="@layout/fragment_news" />
+                android:layout_weight="1"/>
 
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
