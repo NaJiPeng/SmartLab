@@ -1,4 +1,4 @@
-package com.njp.smartlab.ui.home.lesson
+package com.njp.smartlab.ui.lesson
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle

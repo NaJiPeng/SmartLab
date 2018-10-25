@@ -1,6 +1,5 @@
 package com.njp.smartlab.ui.login
 
-import android.app.Dialog
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -9,35 +8,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.njp.smartlab.R
+import com.njp.smartlab.base.BaseFragment
 import com.njp.smartlab.databinding.FragmentLoginBinding
-import com.njp.smartlab.ui.MainActivity
-import com.njp.smartlab.utils.Logger
+import com.njp.smartlab.base.MainActivity
+import com.njp.smartlab.utils.ToastUtil
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * 登录页面
  */
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var viewModel: LoginViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun initView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         binding.viewModel = viewModel
         binding.setLifecycleOwner(this)
 
-        initEvent()
-
         return binding.root
     }
 
-    private fun initEvent() {
+    override fun initEvent() {
 
         binding.btnLogin.setOnClickListener {
-            Logger.getInstance().log("click")
             if (checkout()) {
-//                (activity as MainActivity).loadingDialog.show()
+                (activity as MainActivity).loadingDialog.show()
                 viewModel.login()
             }
         }
@@ -49,6 +49,7 @@ class LoginFragment : Fragment() {
         binding.tvForget.setOnClickListener { _ ->
             (activity as MainActivity).navController.navigate(R.id.action_login_to_forget)
         }
+
     }
 
     /**
@@ -72,5 +73,28 @@ class LoginFragment : Fragment() {
         return true
     }
 
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun handleEvent(event: LoginEvent) {
+        when (event.id) {
+            LoginEvent.loginSuccess -> {
+                (activity as MainActivity).loadingDialog.dismiss()
+                (activity as MainActivity).navController.navigateUp()
+            }
+            LoginEvent.loginFail -> {
+                (activity as MainActivity).loadingDialog.dismiss()
+                ToastUtil.getInstance().show(event.msg)
+            }
+        }
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.njp.smartlab.network
 
 import com.njp.smartlab.bean.LoginResponseBody
+import com.njp.smartlab.bean.ResponseBody
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -17,5 +18,23 @@ interface NetworkService {
             @Field("id") id: String,
             @Field("pwdHash") pwdHash: String
     ): Observable<LoginResponseBody>
+
+
+    @POST("/laboratory/front/user/verifyemail")
+    @FormUrlEncoded
+    fun verifyEmail(
+            @Field("email") id: String
+    ): Observable<ResponseBody>
+
+
+    @POST("/laboratory/front/user/register")
+    @FormUrlEncoded
+    fun register(
+            @Field("userId") userId: String,
+            @Field("pwdHash") pwdHash: String,
+            @Field("email") email: String,
+            @Field("name") name: String,
+            @Field("captcha") captcha: String
+    ): Observable<ResponseBody>
 
 }

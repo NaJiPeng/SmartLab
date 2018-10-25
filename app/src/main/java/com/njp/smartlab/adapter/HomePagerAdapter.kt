@@ -1,13 +1,11 @@
 package com.njp.smartlab.adapter
 
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.view.View
 import android.view.ViewGroup
-import com.njp.smartlab.ui.home.lesson.LessonFragment
-import com.njp.smartlab.ui.home.network.NetworkFragment
-import com.njp.smartlab.ui.home.news.NewsFragment
+import com.njp.smartlab.ui.lesson.LessonFragment
+import com.njp.smartlab.ui.network.NetworkFragment
+import com.njp.smartlab.ui.news.NewsFragment
 
 /**
  * 主页面ViewPager适配器

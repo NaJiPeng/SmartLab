@@ -1,31 +1,59 @@
 package com.njp.smartlab.ui.login
 
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.util.Log
+import com.njp.smartlab.base.BaseViewModel
 import com.njp.smartlab.network.Repository
-import com.njp.smartlab.utils.Logger
+import com.njp.smartlab.utils.UserInfoHolder
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel : BaseViewModel() {
 
     val account = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
     fun login() {
-        Logger.getInstance().log("LoginViewModel:login")
         Repository.getInstance().login(account.value!!, password.value!!)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {
-                            Logger.getInstance().log(it.user.email)
+                            if (it.success) {
+                                it.user.avatarHash = "https://www.gravatar.com/avatar/$it.user.avatarHash"
+                                UserInfoHolder.getInstance().saveUser(it.user)
+                                EventBus.getDefault().post(LoginEvent(LoginEvent.loginSuccess))
+                            } else {
+                                EventBus.getDefault().post(LoginEvent(LoginEvent.loginFail, it.msg))
+                            }
                         },
                         {
-                            Logger.getInstance().log(it.message)
+                            EventBus.getDefault().post(LoginEvent(LoginEvent.loginFail, "网络链接失败"))
                         }
-                )
+                )?.let {
+                    disposables.add(it)
+                }
     }
+
+    init {
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun handleEvent(event: LoginEvent) {
+        if (event.id == LoginEvent.registerSuccess) {
+            val list = event.msg.split(",")
+            account.value = list[0]
+            password.value = list[1]
+        }
+    }
+
 
 }

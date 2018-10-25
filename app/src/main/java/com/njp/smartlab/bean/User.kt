@@ -1,15 +1,15 @@
 package com.njp.smartlab.bean
 
 data class User(
-        val userId: String,
-        val name: String,
-        val pwdHash: String,
-        val avatarHash: String,
-        val major: Any,
-        val email: String,
-        val isAllowed: Int,
-        val role: Int,
-        val coin: Int,
-        val createTime: Long,
-        val updateTime: Long
+        var userId: String,
+        var name: String,
+        var pwdHash: String,
+        var avatarHash: String,
+        var major: String?,
+        var email: String,
+        var isAllowed: Int,
+        var role: Int,
+        var coin: Int,
+        var createTime: Long,
+        var updateTime: Long
 )

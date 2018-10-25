@@ -1,41 +1,61 @@
 package com.njp.smartlab.ui.home
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
-import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
+import com.bumptech.glide.Glide
+import com.franmontiel.persistentcookiejar.ClearableCookieJar
 import com.njp.smartlab.R
 import com.njp.smartlab.adapter.HomePagerAdapter
+import com.njp.smartlab.base.BaseFragment
 import com.njp.smartlab.databinding.FragmentHomeBinding
-import com.njp.smartlab.ui.MainActivity
+import com.njp.smartlab.base.MainActivity
+import com.njp.smartlab.bean.User
+import com.njp.smartlab.network.NetworkConfig
 import com.njp.smartlab.utils.ToastUtil
+import com.njp.smartlab.utils.UserInfoHolder
 import com.tencent.mmkv.MMKV
 
 /**
  * 主页面
  */
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var viewModel: HomeViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun initView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        binding.viewModel = viewModel
+        binding.setLifecycleOwner(this)
 
+        return binding.root
+    }
+
+    override fun initEvent() {
         setupViewPager()
 
         setupNavigationView()
 
         setupToolbar()
 
-        return binding.root
+        viewModel.userInfo.observe(this, Observer<User> {
+            Glide.with(this).load(it?.avatarHash ?: R.drawable.ic_account).into(binding.imgHead)
+            binding.tvAccount.text = it?.userId ?: "未登录"
+            binding.tvName.text = it?.name
+            binding.tvMajor.text = it?.major
+            binding.tvEmail.text = it?.email
+            binding.tvStatus.text = "状态:${if (it?.isAllowed == 1) "通过" else "未通过"}"
+            binding.tvCoin.text = "积分：${it?.coin ?: 0}"
+        })
     }
+
 
     /**
      * 配置ViewPager和BottomNavigationView
@@ -101,7 +121,8 @@ class HomeFragment : Fragment() {
                     }")
                 }
                 R.id.logout -> {
-                    ToastUtil.getInstance().show("退出登录")
+                    UserInfoHolder.getInstance().clearUser()
+                    (NetworkConfig.getInstance().client.cookieJar() as ClearableCookieJar).clear()
                 }
             }
             true

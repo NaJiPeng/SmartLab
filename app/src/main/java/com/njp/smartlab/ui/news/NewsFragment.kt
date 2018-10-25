@@ -1,4 +1,4 @@
-package com.njp.smartlab.ui.home.news
+package com.njp.smartlab.ui.news
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -10,7 +10,6 @@ import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentNewsBinding
-import com.njp.smartlab.utils.ToastUtil
 import com.njp.smartlab.utils.loadsir.FailCallback
 import com.njp.smartlab.utils.loadsir.LoadingCallback
 

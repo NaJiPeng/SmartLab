@@ -6,6 +6,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 /**
  * 全局网络配置
@@ -20,6 +21,9 @@ class NetworkConfig {
     }
 
     val client = OkHttpClient.Builder()
+            .connectTimeout(8, TimeUnit.MINUTES)
+            .writeTimeout(8, TimeUnit.MINUTES)
+            .readTimeout(8, TimeUnit.MINUTES)
             .cookieJar(PersistentCookieJar(SetCookieCache(), MMKVCookiePersistor()))
             .build()
 

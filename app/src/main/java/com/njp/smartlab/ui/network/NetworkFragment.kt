@@ -1,4 +1,4 @@
-package com.njp.smartlab.ui.home.network
+package com.njp.smartlab.ui.network
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle

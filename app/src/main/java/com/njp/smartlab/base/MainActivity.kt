@@ -1,16 +1,12 @@
-package com.njp.smartlab.ui
+package com.njp.smartlab.base
 
 import android.app.Dialog
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.ActivityMainBinding
 

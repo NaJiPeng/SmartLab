@@ -19,8 +19,12 @@ class Logger private constructor() {
 
     }
 
-    fun log(content: String?) {
-        if (switch) Log.i(tag, content)
+    fun log(msg: String?) {
+        if (switch) Log.i(tag, msg)
+    }
+
+    fun error(msg: String?, throwable: Throwable) {
+        if (switch) Log.e(tag, msg, throwable)
     }
 
 }

@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.njp.smartlab.ui.home.HomeViewModel" />
+    </data>
+
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
@@ -32,7 +39,7 @@
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
@@ -60,6 +67,78 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="@color/colorPrimary">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_head"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/ic_account"
+                    app:civ_border_color="@android:color/white"
+                    app:civ_border_width="1dp"
+                    app:civ_circle_background_color="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tv_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/img_head"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/img_head"
+                    android:text="未登录"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_account"
+                    android:layout_alignLeft="@id/tv_account"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_major"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_name"
+                    android:layout_alignLeft="@id/tv_name"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/tv_status"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/tv_coin"
+                    android:layout_marginLeft="20dp"
+                    android:text="状态:"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="积分:"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
 
             </RelativeLayout>
 

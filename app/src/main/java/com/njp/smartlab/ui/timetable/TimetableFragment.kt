@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentTimetableBinding
-import com.njp.smartlab.ui.MainActivity
+import com.njp.smartlab.base.MainActivity
 
 /**
  * 我的课表页面
