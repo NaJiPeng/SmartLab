@@ -21,9 +21,9 @@ class NetworkConfig {
     }
 
     val client = OkHttpClient.Builder()
-            .connectTimeout(8, TimeUnit.MINUTES)
-            .writeTimeout(8, TimeUnit.MINUTES)
-            .readTimeout(8, TimeUnit.MINUTES)
+            .connectTimeout(6, TimeUnit.SECONDS)
+            .writeTimeout(6, TimeUnit.SECONDS)
+            .readTimeout(6, TimeUnit.SECONDS)
             .cookieJar(PersistentCookieJar(SetCookieCache(), MMKVCookiePersistor()))
             .build()
 

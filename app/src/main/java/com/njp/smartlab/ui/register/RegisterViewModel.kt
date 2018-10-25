@@ -3,6 +3,7 @@ package com.njp.smartlab.ui.register
 import android.arch.lifecycle.MutableLiveData
 import com.njp.smartlab.base.BaseViewModel
 import com.njp.smartlab.network.Repository
+import com.njp.smartlab.utils.Logger
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
@@ -44,10 +45,12 @@ class RegisterViewModel : BaseViewModel() {
                             if (it.success) {
                                 EventBus.getDefault().post(RegisterEvent(RegisterEvent.registerSuccess))
                             } else {
+                                Logger.getInstance().log(it.msg)
                                 EventBus.getDefault().post(RegisterEvent(RegisterEvent.registerFail, it.msg))
                             }
                         },
                         {
+                            Logger.getInstance().error("error", it)
                             EventBus.getDefault().post(RegisterEvent(RegisterEvent.registerFail, "网络连接失败"))
                         }
                 )?.let { disposables.add(it) }
