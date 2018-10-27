@@ -123,13 +123,18 @@ class HomeFragment : BaseFragment() {
                 R.id.logout -> {
                     UserInfoHolder.getInstance().clearUser()
                     (NetworkConfig.getInstance().client.cookieJar() as ClearableCookieJar).clear()
+                    ToastUtil.getInstance().show("已退出登录")
                 }
             }
             true
         }
 
-        binding.headLayout.setOnClickListener { _ ->
-            (activity as MainActivity).navController.navigate(R.id.action_home_to_login)
+        binding.imgHead.setOnClickListener { _ ->
+            if (viewModel.userInfo.value == null) {
+                (activity as MainActivity).navController.navigate(R.id.action_home_to_login)
+            }else{
+                ToastUtil.getInstance().show("修改个人信息")
+            }
         }
     }
 

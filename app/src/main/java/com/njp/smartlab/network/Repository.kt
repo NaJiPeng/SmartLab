@@ -36,4 +36,24 @@ class Repository private constructor() {
             userId, pwdHash, email, name, captcha
     )
 
+    /**
+     * 修改密码验证
+     */
+    fun changePwdVerify(email: String) = service.changePwdVerify(email)
+
+    /**
+     * 修改密码
+     */
+    /**
+     * captcha:String
+    newPwd:String
+    email:string
+    id:String
+     */
+    fun updatePwd(
+            captcha: String, newPwd: String, email: String, id: String
+    ) = service.updatePwd(
+            captcha, newPwd, email, id
+    )
+
 }

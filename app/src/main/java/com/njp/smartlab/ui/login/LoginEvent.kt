@@ -7,6 +7,6 @@ data class LoginEvent(val id: Int, val msg: String = "") {
     companion object {
         const val loginSuccess = 0
         const val loginFail = 1
-        const val registerSuccess = 2
+        const val fillOut = 2
     }
 }

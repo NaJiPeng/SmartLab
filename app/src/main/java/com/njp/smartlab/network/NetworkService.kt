@@ -37,4 +37,21 @@ interface NetworkService {
             @Field("captcha") captcha: String
     ): Observable<ResponseBody>
 
+    @POST("/laboratory/front/user/changepwdverify")
+    @FormUrlEncoded
+    fun changePwdVerify(
+            @Field("email") email: String
+    ): Observable<ResponseBody>
+
+
+    @POST("/laboratory/front/user/updatepwd")
+    @FormUrlEncoded
+    fun updatePwd(
+            @Field("captcha") captcha: String,
+            @Field("newPwd") newPwd: String,
+            @Field("email") email: String,
+            @Field("id") id: String
+    ): Observable<ResponseBody>
+
+
 }

@@ -22,7 +22,7 @@ class LoginViewModel : BaseViewModel() {
                 .subscribe(
                         {
                             if (it.success) {
-                                it.user.avatarHash = "https://www.gravatar.com/avatar/$it.user.avatarHash"
+                                it.user.avatarHash = "https://www.gravatar.com/avatar/$it.user.avatarHash?d=robohash"
                                 UserInfoHolder.getInstance().saveUser(it.user)
                                 EventBus.getDefault().post(LoginEvent(LoginEvent.loginSuccess))
                             } else {
@@ -30,7 +30,7 @@ class LoginViewModel : BaseViewModel() {
                             }
                         },
                         {
-                            EventBus.getDefault().post(LoginEvent(LoginEvent.loginFail, "网络链接失败"))
+                            EventBus.getDefault().post(LoginEvent(LoginEvent.loginFail, "网络连接失败"))
                         }
                 )?.let {
                     disposables.add(it)
@@ -48,7 +48,7 @@ class LoginViewModel : BaseViewModel() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun handleEvent(event: LoginEvent) {
-        if (event.id == LoginEvent.registerSuccess) {
+        if (event.id == LoginEvent.fillOut) {
             val list = event.msg.split(",")
             account.value = list[0]
             password.value = list[1]

@@ -1,12 +1,8 @@
 package com.njp.smartlab.ui.register
 
-import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
-import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import com.njp.smartlab.R
@@ -35,21 +31,13 @@ class RegisterFragment : BaseFragment() {
         return binding.root
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun initEvent() {
 
-        binding.etEmail.setOnTouchListener { _, motionEvent ->
-            val drawable = binding.etEmail.compoundDrawables[2] ?: return@setOnTouchListener false
-            if (motionEvent.action != MotionEvent.ACTION_UP) {
-                return@setOnTouchListener false
+        binding.imgSend.setOnClickListener {
+            if (checkEmail()) {
+                viewModel.verifyEmail()
+                it.isEnabled = false
             }
-            if (motionEvent.x > binding.etEmail.width - binding.etEmail.paddingRight - drawable.intrinsicWidth) {
-                if (checkEmail()) {
-                    viewModel.verifyEmail()
-                }
-                return@setOnTouchListener true
-            }
-            return@setOnTouchListener false
         }
 
         binding.tvLogin.setOnClickListener { _ ->
@@ -62,6 +50,11 @@ class RegisterFragment : BaseFragment() {
                 viewModel.register()
             }
         }
+
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
+
     }
 
     /**
@@ -70,7 +63,7 @@ class RegisterFragment : BaseFragment() {
     private fun check(): Boolean {
         if (viewModel.account.value.isNullOrEmpty()) {
             binding.etAccount.requestFocus()
-            binding.etAccount.error = "账号不能为空"
+            binding.etAccount.error = "学号不能为空"
             return false
         }
         if (viewModel.name.value.isNullOrEmpty()) {
@@ -127,13 +120,8 @@ class RegisterFragment : BaseFragment() {
         return true
     }
 
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
+    override fun onDestroy() {
+        super.onDestroy()
         EventBus.getDefault().unregister(this)
     }
 
@@ -141,21 +129,33 @@ class RegisterFragment : BaseFragment() {
     fun handleEvent(event: RegisterEvent) {
         when (event.id) {
             RegisterEvent.emailSuccess -> {
-                ToastUtil.getInstance().show("已发验证码")
+                ToastUtil.getInstance().show("验证码已发送")
+                binding.imgSend.visibility = View.INVISIBLE
+                binding.countDownView.apply {
+                    visibility = View.VISIBLE
+                    start(45000)
+                    setOnCountdownEndListener {
+                        binding.imgSend.apply {
+                            visibility = View.VISIBLE
+                            isEnabled = true
+                        }
+                        it.visibility = View.INVISIBLE
+                    }
+                }
             }
             RegisterEvent.emailFail -> {
                 ToastUtil.getInstance().show(event.msg)
+                binding.imgSend.isEnabled = true
             }
             RegisterEvent.registerSuccess -> {
                 (activity as MainActivity).loadingDialog.dismiss()
                 ToastUtil.getInstance().show("注册成功！")
                 EventBus.getDefault().post(LoginEvent(
-                        LoginEvent.registerSuccess,
+                        LoginEvent.fillOut,
                         "${viewModel.account.value},${viewModel.password.value}"
                 ))
                 (activity as MainActivity).navController.navigateUp()
             }
-
             RegisterEvent.registerFail -> {
                 (activity as MainActivity).loadingDialog.dismiss()
                 ToastUtil.getInstance().show(event.msg)

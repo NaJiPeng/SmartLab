@@ -91,7 +91,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"
-                            android:hint="账号"
+                            android:hint="学号"
                             android:inputType="number"
                             android:singleLine="true"
                             android:text="@={viewModel.account}" />

@@ -12,8 +12,8 @@ android {
         applicationId "com.njp.smartlab"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.1.0"
+        versionCode 181027
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -83,5 +83,7 @@ dependencies {
     }
 
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    implementation 'com.github.iwgang:countdownview:2.1.6'
 
 }

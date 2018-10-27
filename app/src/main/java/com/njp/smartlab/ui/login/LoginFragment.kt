@@ -50,6 +50,9 @@ class LoginFragment : BaseFragment() {
             (activity as MainActivity).navController.navigate(R.id.action_login_to_forget)
         }
 
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
     }
 
     /**
@@ -58,7 +61,7 @@ class LoginFragment : BaseFragment() {
     private fun checkout(): Boolean {
         if (viewModel.account.value.isNullOrEmpty()) {
             binding.etAccount.requestFocus()
-            binding.etAccount.error = "账号不能为空"
+            binding.etAccount.error = "学号不能为空"
             return false
         }
         if (viewModel.password.value.isNullOrEmpty()) {
@@ -73,13 +76,8 @@ class LoginFragment : BaseFragment() {
         return true
     }
 
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
+    override fun onDestroy() {
+        super.onDestroy()
         EventBus.getDefault().unregister(this)
     }
 
