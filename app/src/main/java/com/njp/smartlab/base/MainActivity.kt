@@ -36,17 +36,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-//        super.onBackPressed()
-        if (navController.currentDestination?.id == R.id.home) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                exitTime = System.currentTimeMillis()
-                ToastUtil.getInstance().show("再按一次退出程序")
-            } else {
-                System.exit(0)
-            }
+        if (navController.currentDestination?.id == R.id.home && (System.currentTimeMillis() - exitTime) > 2000) {
+            exitTime = System.currentTimeMillis()
+            ToastUtil.getInstance().show("再按一次退出程序")
         } else {
-            navController.navigateUp()
+            super.onBackPressed()
         }
+
     }
 
 }

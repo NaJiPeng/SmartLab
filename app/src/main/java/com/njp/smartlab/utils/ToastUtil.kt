@@ -1,7 +1,7 @@
 package com.njp.smartlab.utils
 
 import android.widget.Toast
-import com.njp.smartlab.MyApplication
+import com.njp.smartlab.base.MyApplication
 
 /**
  * 打Toast的工具类

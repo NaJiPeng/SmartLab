@@ -1,8 +1,5 @@
 package com.njp.smartlab.network
 
-import com.njp.smartlab.bean.LoginResponseBody
-import io.reactivex.Observable
-
 
 /**
  * 应用网络请求唯一入口
@@ -44,16 +41,15 @@ class Repository private constructor() {
     /**
      * 修改密码
      */
-    /**
-     * captcha:String
-    newPwd:String
-    email:string
-    id:String
-     */
     fun updatePwd(
             captcha: String, newPwd: String, email: String, id: String
     ) = service.updatePwd(
             captcha, newPwd, email, id
     )
+
+    /**
+     * 修改资料
+     */
+    fun update(name: String, major: String) = service.update(name, major)
 
 }

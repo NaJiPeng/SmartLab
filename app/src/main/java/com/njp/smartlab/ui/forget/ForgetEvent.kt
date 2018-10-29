@@ -1,7 +1,7 @@
 package com.njp.smartlab.ui.forget
 
 /**
- * 注册界面事件约定接口
+ * 忘记密码界面事件约定接口
  */
 data class ForgetEvent(val id: Int, val msg: String = "") {
     companion object {

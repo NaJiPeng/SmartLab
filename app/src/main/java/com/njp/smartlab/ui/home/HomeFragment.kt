@@ -51,7 +51,7 @@ class HomeFragment : BaseFragment() {
             binding.tvName.text = it?.name
             binding.tvMajor.text = it?.major
             binding.tvEmail.text = it?.email
-            binding.tvStatus.text = "状态:${if (it?.isAllowed == 1) "通过" else "未通过"}"
+            binding.tvStatus.text = "状态：${if (it?.isAllowed == 1) "通过" else "未通过"}"
             binding.tvCoin.text = "积分：${it?.coin ?: 0}"
         })
     }
@@ -132,8 +132,8 @@ class HomeFragment : BaseFragment() {
         binding.imgHead.setOnClickListener { _ ->
             if (viewModel.userInfo.value == null) {
                 (activity as MainActivity).navController.navigate(R.id.action_home_to_login)
-            }else{
-                ToastUtil.getInstance().show("修改个人信息")
+            } else {
+                (activity as MainActivity).navController.navigate(R.id.action_home_to_update)
             }
         }
     }
@@ -144,6 +144,16 @@ class HomeFragment : BaseFragment() {
     private fun setupToolbar() {
         binding.toolbar.setNavigationOnClickListener { _ ->
             binding.drawerLayout.openDrawer(Gravity.START)
+        }
+
+        binding.toolbar.inflateMenu(R.menu.menu_home)
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.token -> {
+                    (activity as MainActivity).navController.navigate(R.id.action_home_to_token)
+                }
+            }
+            false
         }
     }
 

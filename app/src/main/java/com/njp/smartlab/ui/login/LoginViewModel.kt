@@ -22,7 +22,7 @@ class LoginViewModel : BaseViewModel() {
                 .subscribe(
                         {
                             if (it.success) {
-                                it.user.avatarHash = "https://www.gravatar.com/avatar/$it.user.avatarHash?d=robohash"
+                                it.user.avatarHash = "https://www.gravatar.com/avatar/$it.user.avatarHash?d=retro"
                                 UserInfoHolder.getInstance().saveUser(it.user)
                                 EventBus.getDefault().post(LoginEvent(LoginEvent.loginSuccess))
                             } else {

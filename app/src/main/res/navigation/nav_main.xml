@@ -14,32 +14,46 @@
             app:destination="@id/history"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/anim_pop_enter"
-            app:popExitAnim="@anim/anim_pop_exit" />
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_home_to_timetable"
             app:destination="@id/timetable"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/anim_pop_enter"
-            app:popExitAnim="@anim/anim_pop_exit" />
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_home_to_files"
             app:destination="@id/files"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/anim_pop_enter"
-            app:popExitAnim="@anim/anim_pop_exit" />
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_home_to_about"
             app:destination="@id/about"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/anim_pop_enter"
-            app:popExitAnim="@anim/anim_pop_exit" />
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_home_to_login"
             app:destination="@id/login"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_home_to_update"
+            app:destination="@id/update"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_home_to_token"
+            app:destination="@id/token"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -75,15 +89,15 @@
             app:destination="@id/register"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/anim_pop_enter"
-            app:popExitAnim="@anim/anim_pop_exit" />
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_login_to_forget"
             app:destination="@id/forget"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/anim_pop_enter"
-            app:popExitAnim="@anim/anim_pop_exit" />
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -95,5 +109,15 @@
         android:id="@+id/forget"
         android:name="com.njp.smartlab.ui.forget.ForgetFragment"
         tools:layout="@layout/fragment_forget" />
+
+    <fragment
+        android:id="@+id/update"
+        android:name="com.njp.smartlab.ui.update.UpdateFragment"
+        tools:layout="@layout/fragment_update" />
+
+    <fragment
+        android:id="@+id/token"
+        android:name="com.njp.smartlab.ui.token.TokenFragment"
+        tools:layout="@layout/fragment_token" />
 
 </navigation>

@@ -53,5 +53,12 @@ interface NetworkService {
             @Field("id") id: String
     ): Observable<ResponseBody>
 
+    @POST("/laboratory/front/user/update")
+    @FormUrlEncoded
+    fun update(
+            @Field("name") name: String,
+            @Field("major") major: String
+    ): Observable<LoginResponseBody>
+
 
 }

@@ -1,9 +1,11 @@
-package com.njp.smartlab
+package com.njp.smartlab.base
 
 import android.app.Application
 import com.kingja.loadsir.core.LoadSir
 import com.njp.smartlab.utils.loadsir.FailCallback
+import com.njp.smartlab.utils.loadsir.ImageErrorCallback
 import com.njp.smartlab.utils.loadsir.LoadingCallback
+import com.njp.smartlab.utils.loadsir.ScanningCallback
 import com.tencent.mmkv.MMKV
 import com.uuzuche.lib_zxing.activity.ZXingLibrary
 
@@ -27,6 +29,8 @@ class MyApplication : Application() {
         LoadSir.beginBuilder()
                 .addCallback(LoadingCallback())
                 .addCallback(FailCallback())
+                .addCallback(ScanningCallback())
+                .addCallback(ImageErrorCallback())
                 .commit()
     }
 
