@@ -44,16 +44,6 @@ class HomeFragment : BaseFragment() {
         setupNavigationView()
 
         setupToolbar()
-
-        viewModel.userInfo.observe(this, Observer<User> {
-            Glide.with(this).load(it?.avatarHash ?: R.drawable.ic_account).into(binding.imgHead)
-            binding.tvAccount.text = it?.userId ?: "未登录"
-            binding.tvName.text = it?.name
-            binding.tvMajor.text = it?.major
-            binding.tvEmail.text = it?.email
-            binding.tvStatus.text = "状态：${if (it?.isAllowed == 1) "通过" else "未通过"}"
-            binding.tvCoin.text = "积分：${it?.coin ?: 0}"
-        })
     }
 
 
@@ -150,7 +140,11 @@ class HomeFragment : BaseFragment() {
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.token -> {
-                    (activity as MainActivity).navController.navigate(R.id.action_home_to_token)
+                    if (UserInfoHolder.getInstance().getUser().value != null) {
+                        (activity as MainActivity).navController.navigate(R.id.action_home_to_token)
+                    }else{
+                        ToastUtil.getInstance().show("你还没登录")
+                    }
                 }
             }
             false

@@ -27,13 +27,33 @@
 
         </android.support.design.widget.AppBarLayout>
 
+        <cn.iwgang.countdownview.CountdownView
+            android:id="@+id/count_down_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            app:isHideTimeBackground="false"
+            app:isShowTimeBgBorder="true"
+            app:isShowTimeBgDivisionLine="true"
+            app:isSuffixTextBold="true"
+            app:suffixTextColor="@color/colorPrimary"
+            app:suffixTextSize="30sp"
+            app:timeBgBorderColor="@android:color/transparent"
+            app:timeBgColor="@color/colorPrimary"
+            app:timeBgDivisionLineColor="@android:color/white"
+            app:timeBgDivisionLineSize="0.6dp"
+            app:timeBgRadius="5dp"
+            app:timeTextColor="@android:color/white"
+            app:timeTextSize="40sp" />
+
         <ImageView
             android:id="@+id/img_qr_code"
+            image="@{viewModel.bitmap}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="30dp"
-            android:src="@drawable/ic_img_error"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_img_error" />
 
     </LinearLayout>
 </layout>

@@ -14,6 +14,9 @@ import com.njp.smartlab.databinding.FragmentTokenBinding
 import com.njp.smartlab.utils.ToastUtil
 import com.njp.smartlab.utils.loadsir.ImageErrorCallback
 import com.njp.smartlab.utils.loadsir.ScanningCallback
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * 身份令牌页面
@@ -30,22 +33,14 @@ class TokenFragment : BaseFragment() {
         binding.viewModel = viewModel
         binding.setLifecycleOwner(this)
 
-        loadService = LoadSir.getDefault().register(binding.imgQrCode){
-            loadService.showCallback(ScanningCallback::class.java)
-            Thread {
-                Thread.sleep(3000)
-                activity?.runOnUiThread {
-                    loadService.showCallback(ImageErrorCallback::class.java)
-                }
-            }.start()
-        }
-
-        loadService.showCallback(ImageErrorCallback::class.java)
-
         return binding.root
     }
 
     override fun initEvent() {
+        loadService = LoadSir.getDefault().register(binding.imgQrCode) {
+            refresh()
+        }
+
         binding.toolbar.setNavigationOnClickListener {
             (activity as MainActivity).navController.navigateUp()
         }
@@ -54,11 +49,57 @@ class TokenFragment : BaseFragment() {
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.refresh -> {
-                    ToastUtil.getInstance().show("刷新")
+                    refresh()
                 }
             }
             false
         }
 
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
+
+        refresh()
+
     }
+
+    private fun refresh() {
+        if (viewModel.isLoading) {
+            ToastUtil.getInstance().show("正在刷新")
+        } else {
+            viewModel.isLoading = true
+            loadService.showCallback(ScanningCallback::class.java)
+            binding.countDownView.stop()
+            binding.countDownView.allShowZero()
+            viewModel.isLoading = true
+            viewModel.refresh()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun handleEvent(event: TokenEvent) {
+        when (event.id) {
+            TokenEvent.tokenSuccess -> {
+                loadService.showSuccess()
+                binding.countDownView.apply {
+                    start(61000)
+                    setOnCountdownEndListener {
+                        refresh()
+                    }
+                }
+            }
+            TokenEvent.tokenFail -> {
+                ToastUtil.getInstance().show(event.msg)
+                binding.countDownView.allShowZero()
+                loadService.showCallback(ImageErrorCallback::class.java)
+            }
+
+        }
+    }
+
 }

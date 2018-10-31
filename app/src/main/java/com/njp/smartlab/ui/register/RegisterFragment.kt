@@ -133,7 +133,7 @@ class RegisterFragment : BaseFragment() {
                 binding.imgSend.visibility = View.INVISIBLE
                 binding.countDownView.apply {
                     visibility = View.VISIBLE
-                    start(45000)
+                    start(46000)
                     setOnCountdownEndListener {
                         binding.imgSend.apply {
                             visibility = View.VISIBLE

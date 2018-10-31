@@ -1,6 +1,7 @@
 package com.njp.smartlab.network
 
 import com.njp.smartlab.bean.LoginResponseBody
+import com.njp.smartlab.bean.OpendoorResponseBody
 import com.njp.smartlab.bean.ResponseBody
 import io.reactivex.Observable
 import retrofit2.http.Field
@@ -59,6 +60,9 @@ interface NetworkService {
             @Field("name") name: String,
             @Field("major") major: String
     ): Observable<LoginResponseBody>
+
+    @POST("/laboratory/front/door/open")
+    fun opendoor(): Observable<OpendoorResponseBody>
 
 
 }

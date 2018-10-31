@@ -52,4 +52,9 @@ class Repository private constructor() {
      */
     fun update(name: String, major: String) = service.update(name, major)
 
+    /**
+     * 开门请求
+     */
+    fun opendoor() = service.opendoor()
+
 }

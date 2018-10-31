@@ -44,7 +44,7 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_head"
-                    url="@{viewModel.imgUrl}"
+                    image="@{viewModel.imgUrl}"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:src="@drawable/ic_account"
