@@ -4,7 +4,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
 import com.njp.smartlab.ui.lesson.LessonFragment
-import com.njp.smartlab.ui.network.NetworkFragment
+import com.njp.smartlab.ui.locker.LockerFragment
 import com.njp.smartlab.ui.news.NewsFragment
 
 /**
@@ -13,7 +13,7 @@ import com.njp.smartlab.ui.news.NewsFragment
 class HomePagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     private val fragments = listOf(
-            NewsFragment(), LessonFragment(), NetworkFragment()
+            NewsFragment(), LessonFragment(), LockerFragment()
     )
 
     override fun getItem(p0: Int) = fragments[p0]

@@ -15,7 +15,7 @@ class TokenViewModel : BaseViewModel() {
     val bitmap = MutableLiveData<Bitmap>()
 
     fun refresh() {
-        Repository.getInstance().opendoor()
+        Repository.getInstance().openDoor()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

@@ -1,5 +1,6 @@
 package com.njp.smartlab.network
 
+import com.njp.smartlab.bean.HistoryResponseBody
 import com.njp.smartlab.bean.LoginResponseBody
 import com.njp.smartlab.bean.OpendoorResponseBody
 import com.njp.smartlab.bean.ResponseBody
@@ -62,7 +63,12 @@ interface NetworkService {
     ): Observable<LoginResponseBody>
 
     @POST("/laboratory/front/door/open")
-    fun opendoor(): Observable<OpendoorResponseBody>
+    fun openDoor(): Observable<OpendoorResponseBody>
+
+    @POST("/laboratory/front/manipulate/selectall")
+    fun getHistory(): Observable<HistoryResponseBody>
+
+
 
 
 }

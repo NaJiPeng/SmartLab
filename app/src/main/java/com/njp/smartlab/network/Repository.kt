@@ -55,6 +55,11 @@ class Repository private constructor() {
     /**
      * 开门请求
      */
-    fun opendoor() = service.opendoor()
+    fun openDoor() = service.openDoor()
+
+    /**
+     * 获取历史操作记录
+     */
+    fun getHistory() = service.getHistory()
 
 }

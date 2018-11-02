@@ -4,14 +4,14 @@
     <item
         android:id="@+id/news"
         android:icon="@drawable/ic_news"
-        android:title="资讯" />
+        android:title="科技资讯" />
     <item
         android:id="@+id/lesson"
         android:icon="@drawable/ic_education"
-        android:title="课程" />
+        android:title="课程讲座" />
     <item
         android:id="@+id/network"
-        android:icon="@drawable/ic_network"
-        android:title="物联" />
+        android:icon="@drawable/ic_locker"
+        android:title="物品借用" />
 
 </menu>

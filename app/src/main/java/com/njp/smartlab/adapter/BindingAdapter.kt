@@ -6,6 +6,9 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.njp.smartlab.R
+import com.njp.smartlab.bean.Manipulation
+import java.text.SimpleDateFormat
+import java.util.*
 
 @BindingAdapter("image")
 fun ImageView.setImage(image: Any?) {
@@ -36,3 +39,20 @@ fun TextView.setStatus(status: Int?) {
 fun TextView.setCoin(coin: Int?) {
     text = if (coin != null) "金币：$coin" else ""
 }
+
+@BindingAdapter("time")
+fun TextView.setTime(time: Long) {
+    val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA)
+    text = sdf.format(Date(time))
+}
+
+@BindingAdapter("manipulation")
+fun TextView.setManipulation(manipulation: Manipulation) {
+    text = when (manipulation.functionType) {
+        1 -> "进入实验室"
+        2 -> "借用${manipulation.boxId}号储物柜物品"
+        3 -> "归还${manipulation.boxId}号储物柜物品"
+        else -> ""
+    }
+}
+

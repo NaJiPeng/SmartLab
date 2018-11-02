@@ -89,6 +89,8 @@
                     android:layout_alignTop="@id/img_head"
                     android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@id/img_head"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:text="未登录"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -99,6 +101,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_account"
                     android:layout_alignLeft="@id/tv_account"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:text="@{viewModel.userInfo.name}"
                     android:textColor="@android:color/white"
                     android:textSize="17sp" />
@@ -109,6 +113,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_name"
                     android:layout_alignLeft="@id/tv_name"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:text="@{viewModel.userInfo.major}"
                     android:textColor="@android:color/white"
                     android:textSize="17sp" />
@@ -118,31 +124,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@id/tv_status"
-                    android:text="@{viewModel.userInfo.email}"
                     android:layout_marginLeft="20dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{viewModel.userInfo.email}"
                     android:textColor="@android:color/white"
                     android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/tv_status"
+                    status="@{viewModel.userInfo.isAllowed}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@id/tv_coin"
                     android:layout_marginLeft="20dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:text="状态:"
-                    status="@{viewModel.userInfo.isAllowed}"
                     android:textColor="@android:color/white"
                     android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/tv_coin"
+                    coin="@{viewModel.userInfo.coin}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:text="积分:"
-                    coin="@{viewModel.userInfo.coin}"
                     android:textColor="@android:color/white"
                     android:textSize="17sp" />
 

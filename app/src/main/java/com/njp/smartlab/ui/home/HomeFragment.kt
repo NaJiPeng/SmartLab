@@ -1,21 +1,20 @@
 package com.njp.smartlab.ui.home
 
-import android.arch.lifecycle.Observer
+import android.app.AlertDialog
 import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
 import android.databinding.DataBindingUtil
 import android.support.v4.view.ViewPager
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.franmontiel.persistentcookiejar.ClearableCookieJar
 import com.njp.smartlab.R
 import com.njp.smartlab.adapter.HomePagerAdapter
 import com.njp.smartlab.base.BaseFragment
 import com.njp.smartlab.databinding.FragmentHomeBinding
 import com.njp.smartlab.base.MainActivity
-import com.njp.smartlab.bean.User
 import com.njp.smartlab.network.NetworkConfig
 import com.njp.smartlab.utils.ToastUtil
 import com.njp.smartlab.utils.UserInfoHolder
@@ -28,12 +27,23 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
+    private lateinit var dialog: AlertDialog
 
     override fun initView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         binding.viewModel = viewModel
         binding.setLifecycleOwner(this)
+
+        dialog = AlertDialog.Builder(context)
+                .setMessage("你还没有登录，是否前去登录？")
+                .setNegativeButton("算了") { dialogInterface: DialogInterface, _: Int ->
+                    dialogInterface.dismiss()
+                }.setPositiveButton("登录") { dialogInterface: DialogInterface, _: Int ->
+                    dialogInterface.dismiss()
+                    (activity as MainActivity).navController.navigate(R.id.action_home_to_login)
+                }
+                .create()
 
         return binding.root
     }
@@ -89,31 +99,40 @@ class HomeFragment : BaseFragment() {
             binding.drawerLayout.closeDrawer(Gravity.START)
             when (it.itemId) {
                 R.id.timetable -> {
-                    (activity as MainActivity).navController.navigate(R.id.action_home_to_timetable)
+                    if (UserInfoHolder.getInstance().getUser().value != null) {
+                        (activity as MainActivity).navController.navigate(R.id.action_home_to_timetable)
+                    } else {
+                        dialog.show()
+                    }
                 }
                 R.id.files -> {
-                    (activity as MainActivity).navController.navigate(R.id.action_home_to_files)
+                    if (UserInfoHolder.getInstance().getUser().value != null) {
+                        (activity as MainActivity).navController.navigate(R.id.action_home_to_files)
+                    } else {
+                        dialog.show()
+                    }
                 }
                 R.id.history -> {
-                    (activity as MainActivity).navController.navigate(R.id.action_home_to_history)
+                    if (UserInfoHolder.getInstance().getUser().value != null) {
+                        (activity as MainActivity).navController.navigate(R.id.action_home_to_history)
+                    } else {
+                        dialog.show()
+                    }
                 }
                 R.id.about -> {
                     (activity as MainActivity).navController.navigate(R.id.action_home_to_about)
                 }
-                R.id.night_mode -> {
-                    if (MMKV.defaultMMKV().decodeBool("night")) {
-                        MMKV.defaultMMKV().encode("night", false)
-                    } else {
-                        MMKV.defaultMMKV().encode("night", true)
-                    }
-                    ToastUtil.getInstance().show("夜间模式:${
-                    if (MMKV.defaultMMKV().decodeBool("night")) "开" else "关"
-                    }")
+                R.id.update -> {
+                    ToastUtil.getInstance().show("已经是最新版本了")
                 }
                 R.id.logout -> {
-                    UserInfoHolder.getInstance().clearUser()
-                    (NetworkConfig.getInstance().client.cookieJar() as ClearableCookieJar).clear()
-                    ToastUtil.getInstance().show("已退出登录")
+                    if (UserInfoHolder.getInstance().getUser().value != null) {
+                        UserInfoHolder.getInstance().clearUser()
+                        (NetworkConfig.getInstance().client.cookieJar() as ClearableCookieJar).clear()
+                        ToastUtil.getInstance().show("已退出登录")
+                    } else {
+                        ToastUtil.getInstance().show("未登录")
+                    }
                 }
             }
             true
@@ -142,8 +161,8 @@ class HomeFragment : BaseFragment() {
                 R.id.token -> {
                     if (UserInfoHolder.getInstance().getUser().value != null) {
                         (activity as MainActivity).navController.navigate(R.id.action_home_to_token)
-                    }else{
-                        ToastUtil.getInstance().show("你还没登录")
+                    } else {
+                        dialog.show()
                     }
                 }
             }

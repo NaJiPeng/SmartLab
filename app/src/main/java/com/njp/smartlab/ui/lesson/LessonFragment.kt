@@ -1,8 +1,7 @@
 package com.njp.smartlab.ui.lesson
 
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
-import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,10 +19,12 @@ import com.njp.smartlab.utils.loadsir.LoadingCallback
 class LessonFragment : BaseFragment() {
 
     private lateinit var binding: FragmentLessonBinding
+    private lateinit var viewModel: LessonViewModel
     private lateinit var loadService: LoadService<*>
 
     override fun initView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_lesson, container, false)
+        viewModel = ViewModelProviders.of(this).get(LessonViewModel::class.java)
 
         loadService = LoadSir.getDefault().register(binding.root) {
             loadService.showCallback(LoadingCallback::class.java)
