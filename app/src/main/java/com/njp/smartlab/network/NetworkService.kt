@@ -1,9 +1,6 @@
 package com.njp.smartlab.network
 
-import com.njp.smartlab.bean.HistoryResponseBody
-import com.njp.smartlab.bean.LoginResponseBody
-import com.njp.smartlab.bean.OpendoorResponseBody
-import com.njp.smartlab.bean.ResponseBody
+import com.njp.smartlab.bean.*
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -67,6 +64,13 @@ interface NetworkService {
 
     @POST("/laboratory/front/manipulate/selectall")
     fun getHistory(): Observable<HistoryResponseBody>
+
+
+    @POST("laboratory/front/activity/selectall")
+    fun getLessons(): Observable<LessonsResponseBody>
+
+    @POST("/laboratory/front/tool/selectall")
+    fun getTools(): Observable<LockerResponseBody>
 
 
 

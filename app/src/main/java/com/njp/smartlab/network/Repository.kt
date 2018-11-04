@@ -62,4 +62,14 @@ class Repository private constructor() {
      */
     fun getHistory() = service.getHistory()
 
+    /**
+     * 获取课程信息
+     */
+    fun getLessons() = service.getLessons()
+
+    /**
+     * 获取物品信息
+     */
+    fun getTools() = service.getTools()
+
 }

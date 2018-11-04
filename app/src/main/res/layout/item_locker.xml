@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="tool"
+            type="com.njp.smartlab.bean.Tool" />
+    </data>
+
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        canBorrow="@{!tool.borrowed}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@android:color/white"
-        app:cardBackgroundColor="#8a8a8a"
         app:cardCornerRadius="5dp"
         app:contentPadding="8dp">
 
@@ -16,9 +23,9 @@
             android:orientation="vertical">
 
             <TextView
+                boxId="@{tool.boxId}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No.1"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -26,21 +33,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="烧杯"
+                android:text="@{tool.name}"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
 
             <TextView
+                borrow="@{tool.userName}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="已被借用"
                 android:textColor="@android:color/white" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="借用人：张三"
-                android:textColor="@android:color/white" />
 
         </LinearLayout>
 

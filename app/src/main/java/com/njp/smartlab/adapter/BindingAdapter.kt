@@ -1,11 +1,14 @@
 package com.njp.smartlab.adapter
 
 import android.databinding.BindingAdapter
+import android.graphics.Color
+import android.support.v7.widget.CardView
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.njp.smartlab.R
+import com.njp.smartlab.bean.ActivityDetail
 import com.njp.smartlab.bean.Manipulation
 import java.text.SimpleDateFormat
 import java.util.*
@@ -54,5 +57,54 @@ fun TextView.setManipulation(manipulation: Manipulation) {
         3 -> "归还${manipulation.boxId}号储物柜物品"
         else -> ""
     }
+}
+
+@BindingAdapter("restNum", "maxNum", requireAll = true)
+fun TextView.setLessonNum(restNum: Int, maxNum: Int) {
+    text = "课余量：$restNum/$maxNum"
+}
+
+@BindingAdapter("lessonType")
+fun TextView.setLessonType(type: Int) {
+    text = when (type) {
+        1 -> "课程安排："
+        2 -> "讲座安排："
+        3 -> "交流会安排："
+        else -> ""
+    }
+}
+
+@BindingAdapter("lessonDetail")
+fun TextView.setLessonDetail(detail: List<ActivityDetail>) {
+    text = StringBuilder().apply {
+        detail.forEach {
+            append("周数：${it.week}")
+            append("\n")
+            append("时间：星期${it.day}    第${it.activityOrder}节课")
+            append("\n")
+            append("地点：${it.location}")
+            append("\n")
+        }
+        if (length > 0) {
+            deleteCharAt(length - 1)
+        }
+    }.toString()
+}
+
+@BindingAdapter("boxId")
+fun TextView.setBoxId(id: Int) {
+    text = "No.$id"
+}
+
+@BindingAdapter("borrow")
+fun TextView.setBorrowInfo(name: String?) {
+    text = if (name == null) "可以借用" else "已被${name}借用"
+}
+
+@BindingAdapter("canBorrow")
+fun CardView.setCanBorrow(can: Boolean) {
+    setCardBackgroundColor(
+            if (can) Color.parseColor("#3c8ce7") else Color.parseColor("#8a8a8a")
+    )
 }
 

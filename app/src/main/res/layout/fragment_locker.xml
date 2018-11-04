@@ -2,16 +2,26 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.njp.smartlab.ui.locker.LockerViewModel" />
+    </data>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:adapter="@{viewModel.adapter}"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-
-    </LinearLayout>
 
 </layout>

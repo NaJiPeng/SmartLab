@@ -6,16 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.njp.smartlab.R
-import com.njp.smartlab.bean.Manipulation
-import com.njp.smartlab.databinding.ItemHistoryBinding
+import com.njp.smartlab.bean.Tool
+import com.njp.smartlab.databinding.ItemLockerBinding
 
-class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+class LockerAdapter : RecyclerView.Adapter<LockerAdapter.ViewHolder>() {
 
-    private val list = ArrayList<Manipulation>()
+    private val list = ArrayList<Tool>()
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val itemView = LayoutInflater.from(p0.context)
-                .inflate(R.layout.item_history, p0, false)
+                .inflate(R.layout.item_locker, p0, false)
         return ViewHolder(itemView)
     }
 
@@ -24,10 +24,10 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        p0.binding?.manipulation = list[p1]
+        p0.binding?.tool = list[p1]
     }
 
-    fun setData(data: List<Manipulation>) {
+    fun setData(data: List<Tool>) {
         val oldSize = list.size
         list.clear()
         notifyItemRangeRemoved(0, oldSize)
@@ -35,8 +35,7 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
         notifyItemRangeInserted(0, list.size)
     }
 
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val binding = DataBindingUtil.bind<ItemHistoryBinding>(itemView)
+        val binding = DataBindingUtil.bind<ItemLockerBinding>(itemView)
     }
 }

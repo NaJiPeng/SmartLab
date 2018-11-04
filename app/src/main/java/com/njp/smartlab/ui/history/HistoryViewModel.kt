@@ -11,8 +11,7 @@ import org.greenrobot.eventbus.EventBus
 
 class HistoryViewModel : BaseViewModel() {
 
-    private val manipulations = ArrayList<Manipulation>()
-    val adapter = HistoryAdapter(manipulations)
+    val adapter = HistoryAdapter()
 
     fun refresh() {
         Repository.getInstance().getHistory()

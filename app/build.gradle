@@ -12,8 +12,8 @@ android {
         applicationId "com.njp.smartlab"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 181027
-        versionName "1.0.0"
+        versionCode 181104
+        versionName "1.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
