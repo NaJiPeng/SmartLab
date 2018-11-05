@@ -13,6 +13,12 @@ class LessonsAdapter : RecyclerView.Adapter<LessonsAdapter.ViewHolder>() {
 
     private val list = ArrayList<Lession>()
 
+    private lateinit var listener: (Pair<Int, String>) -> (Unit)
+
+    fun setListener(listener: (Pair<Int, String>) -> Unit) {
+        this.listener = listener
+    }
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val itemView = LayoutInflater.from(p0.context)
                 .inflate(R.layout.item_lesson, p0, false)
@@ -25,6 +31,9 @@ class LessonsAdapter : RecyclerView.Adapter<LessonsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         p0.binding?.lesson = list[p1]
+        p0.itemView.setOnClickListener {
+            listener.invoke(Pair(list[p1].activityId, list[p1].name))
+        }
     }
 
     fun setData(data: List<Lession>) {

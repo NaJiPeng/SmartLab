@@ -18,13 +18,11 @@ interface NetworkService {
             @Field("pwdHash") pwdHash: String
     ): Observable<LoginResponseBody>
 
-
     @POST("/laboratory/front/user/verifyemail")
     @FormUrlEncoded
     fun verifyEmail(
             @Field("email") id: String
     ): Observable<ResponseBody>
-
 
     @POST("/laboratory/front/user/register")
     @FormUrlEncoded
@@ -41,7 +39,6 @@ interface NetworkService {
     fun changePwdVerify(
             @Field("email") email: String
     ): Observable<ResponseBody>
-
 
     @POST("/laboratory/front/user/updatepwd")
     @FormUrlEncoded
@@ -65,14 +62,20 @@ interface NetworkService {
     @POST("/laboratory/front/manipulate/selectall")
     fun getHistory(): Observable<HistoryResponseBody>
 
-
     @POST("laboratory/front/activity/selectall")
     fun getLessons(): Observable<LessonsResponseBody>
 
     @POST("/laboratory/front/tool/selectall")
     fun getTools(): Observable<LockerResponseBody>
 
+    @POST("/laboratory/front/activity/choose")
+    @FormUrlEncoded
+    fun choose(
+            @Field("activityId") activityId : Int
+    ): Observable<ResponseBody>
 
+    @POST("/laboratory/front/activity/myactivity")
+    fun myLessons(): Observable<MyLessonsResponseBody>
 
 
 }

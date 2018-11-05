@@ -25,7 +25,6 @@ class LockerViewModel : BaseViewModel() {
                         {
                             if (it.success) {
                                 dataAdapter.setData(it.tools)
-                                Logger.getInstance().log("size:${it.tools.size}")
                                 EventBus.getDefault().post(LockerEvent(LockerEvent.lockerSuccess))
                             } else {
                                 EventBus.getDefault().post(LockerEvent(LockerEvent.lockerFail, it.msg))

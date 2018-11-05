@@ -7,5 +7,7 @@ data class LessonEvent(val id: Int, val msg: String = "") {
     companion object {
         const val lessonSuccess = 0
         const val lessonFail = 1
+        const val chooseSuccess = 2
+        const val chooseFail = 3
     }
 }

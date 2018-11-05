@@ -1,5 +1,8 @@
 package com.njp.smartlab.network
 
+import com.njp.smartlab.bean.TimeTableDisplayBean
+import com.zhuangfei.timetable.model.Schedule
+
 
 /**
  * 应用网络请求唯一入口
@@ -71,5 +74,38 @@ class Repository private constructor() {
      * 获取物品信息
      */
     fun getTools() = service.getTools()
+
+    /**
+     * 选课
+     */
+    fun choose(activityId: Int) = service.choose(activityId)
+
+    /**
+     * 我的课程
+     */
+    fun getMyLessons() = service.myLessons().map {
+        val bean = TimeTableDisplayBean(isSuccess = it.success, msg = it.msg, curWeek = it.currWeek)
+        if (it.success) {
+            val list = ArrayList<Schedule>()
+            it.lessions.forEach { lesson ->
+                lesson.activityDetailResult.activityDetails.forEach { detail ->
+                    list.add(Schedule().apply {
+                        name = lesson.activityDetailResult.name
+                        room = detail.location
+                        teacher = lesson.activityDetailResult.teacher
+                        weekList = detail.week.split(",").map { week ->
+                            week.toInt()
+                        }
+                        start = detail.activityOrder.split(",")[0].toInt()
+                        step = detail.activityOrder.split(",").size
+                        day = detail.day.toInt()
+                        colorRandom = lesson.activityDetailResult.type
+                    })
+                }
+            }
+            bean.data = list
+        }
+        return@map bean
+    }
 
 }

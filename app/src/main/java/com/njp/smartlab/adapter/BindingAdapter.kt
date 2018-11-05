@@ -10,8 +10,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.njp.smartlab.R
 import com.njp.smartlab.bean.ActivityDetail
 import com.njp.smartlab.bean.Manipulation
+import com.zhuangfei.timetable.TimetableView
+import com.zhuangfei.timetable.model.Schedule
+import com.zhuangfei.timetable.model.ScheduleEnable
+import com.zhuangfei.timetable.view.WeekView
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.max
 
 @BindingAdapter("image")
 fun ImageView.setImage(image: Any?) {
@@ -107,4 +112,20 @@ fun CardView.setCanBorrow(can: Boolean) {
             if (can) Color.parseColor("#3c8ce7") else Color.parseColor("#8a8a8a")
     )
 }
+
+@BindingAdapter("data", "curWeek")
+fun TimetableView.setData(data: List<Schedule>, curWeek: Int) {
+    data(data)
+    curWeek(curWeek)
+    showView()
+}
+
+@BindingAdapter("data", "curWeek")
+fun WeekView.setData(source: List<Schedule>, curWeek: Int) {
+    data(source)
+    curWeek(curWeek)
+    showView()
+}
+
+
 

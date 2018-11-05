@@ -10,7 +10,7 @@ import org.greenrobot.eventbus.EventBus
 
 class LessonViewModel : BaseViewModel() {
 
-    private val dataAdapter = LessonsAdapter()
+    val dataAdapter = LessonsAdapter()
 
     val adapter = SlideInBottomAnimationAdapter(dataAdapter)
 
@@ -31,6 +31,24 @@ class LessonViewModel : BaseViewModel() {
                         },
                         {
                             EventBus.getDefault().post(LessonEvent(LessonEvent.lessonFail, "网络连接失败"))
+                        }
+                ).let { disposables.add(it) }
+    }
+
+    fun choose(activityId: Int) {
+        Repository.getInstance().choose(activityId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            if (it.success) {
+                                EventBus.getDefault().post(LessonEvent(LessonEvent.chooseSuccess))
+                            } else {
+                                EventBus.getDefault().post(LessonEvent(LessonEvent.chooseFail, it.msg))
+                            }
+                        },
+                        {
+                            EventBus.getDefault().post(LessonEvent(LessonEvent.chooseFail, "网络连接失败"))
                         }
                 ).let { disposables.add(it) }
     }

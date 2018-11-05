@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.njp.smartlab.ui.timetable.TimeTableViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,15 +29,31 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/content_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="我的课表"
-            android:textColor="@android:color/background_dark"
-            android:textSize="30sp" />
+            android:orientation="vertical">
 
+            <com.zhuangfei.timetable.view.WeekView
+                android:id="@+id/week_view"
+                curWeek="@{viewModel.curWeek}"
+                data="@{viewModel.schedules}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
+            <com.zhuangfei.timetable.TimetableView
+                android:id="@+id/timetable_view"
+                curWeek="@{viewModel.curWeek}"
+                data="@{viewModel.schedules}"
+                app:item_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/app_white">
+
+            </com.zhuangfei.timetable.TimetableView>
+
+        </LinearLayout>
     </LinearLayout>
 
 </layout>

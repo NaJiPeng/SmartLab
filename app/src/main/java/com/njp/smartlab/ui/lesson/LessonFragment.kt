@@ -1,9 +1,10 @@
 package com.njp.smartlab.ui.lesson
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +12,12 @@ import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import com.njp.smartlab.R
 import com.njp.smartlab.base.BaseFragment
+import com.njp.smartlab.base.MainActivity
 import com.njp.smartlab.databinding.FragmentLessonBinding
-import com.njp.smartlab.utils.Logger
 import com.njp.smartlab.utils.ToastUtil
 import com.njp.smartlab.utils.loadsir.FailCallback
 import com.njp.smartlab.utils.loadsir.LoadingCallback
-import jp.wasabeef.recyclerview.animators.FlipInTopXAnimator
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -53,18 +52,25 @@ class LessonFragment : BaseFragment() {
             viewModel.getLessons()
         }
 
+        viewModel.dataAdapter.setListener {
+            AlertDialog.Builder(context!!)
+                    .setMessage("是否预约${it.second}?")
+                    .setPositiveButton("预约") { _: DialogInterface, _: Int ->
+                        (activity as MainActivity).loadingDialog.show()
+                        viewModel.choose(it.first)
+                    }.setNegativeButton("取消") { dialogInterface: DialogInterface, _: Int ->
+                        dialogInterface.dismiss()
+                    }.show()
+        }
+
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
     }
 
     override fun onLazyLoad() {
-        if (viewModel.isFirstLoad) {
-            loadService.showCallback(LoadingCallback::class.java)
-            viewModel.getLessons()
-        } else {
-            loadService.showSuccess()
-        }
+        loadService.showCallback(LoadingCallback::class.java)
+        viewModel.getLessons()
     }
 
     override fun onDestroy() {
@@ -86,6 +92,14 @@ class LessonFragment : BaseFragment() {
                 } else {
                     binding.refreshLayout.isRefreshing = false
                 }
+                ToastUtil.getInstance().show(event.msg)
+            }
+            LessonEvent.chooseSuccess -> {
+                (activity as MainActivity).loadingDialog.dismiss()
+                ToastUtil.getInstance().show("选课成功")
+            }
+            LessonEvent.chooseFail -> {
+                (activity as MainActivity).loadingDialog.dismiss()
                 ToastUtil.getInstance().show(event.msg)
             }
         }
