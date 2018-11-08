@@ -11,6 +11,7 @@ import com.njp.smartlab.R
 import com.njp.smartlab.base.BaseFragment
 import com.njp.smartlab.base.MainActivity
 import com.njp.smartlab.databinding.FragmentNewsDetailBinding
+import com.njp.smartlab.utils.ToastUtil
 import com.njp.smartlab.utils.loadsir.FailCallback
 import com.njp.smartlab.utils.loadsir.LoadingCallback
 import org.greenrobot.eventbus.EventBus
@@ -67,6 +68,7 @@ class NewsDetailFragment : BaseFragment() {
             }
             NewsDetailEvent.newsFail -> {
                 loadService.showCallback(FailCallback::class.java)
+                ToastUtil.getInstance().show(event.msg)
             }
         }
     }
