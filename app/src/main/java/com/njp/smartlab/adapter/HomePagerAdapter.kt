@@ -2,6 +2,7 @@ package com.njp.smartlab.adapter
 
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.app.FragmentStatePagerAdapter
 import android.view.ViewGroup
 import com.njp.smartlab.ui.lesson.LessonFragment
 import com.njp.smartlab.ui.locker.LockerFragment
@@ -10,7 +11,7 @@ import com.njp.smartlab.ui.news.NewsFragment
 /**
  * 主页面ViewPager适配器
  */
-class HomePagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class HomePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     private val fragments = listOf(
             NewsFragment(), LessonFragment(), LockerFragment()
@@ -20,7 +21,4 @@ class HomePagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getCount() = fragments.size
 
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-//        super.destroyItem(container, position, `object`)
-    }
 }

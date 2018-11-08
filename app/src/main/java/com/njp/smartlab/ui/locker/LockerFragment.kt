@@ -11,7 +11,6 @@ import com.kingja.loadsir.core.LoadSir
 import com.njp.smartlab.R
 import com.njp.smartlab.base.BaseFragment
 import com.njp.smartlab.databinding.FragmentLockerBinding
-import com.njp.smartlab.utils.Logger
 import com.njp.smartlab.utils.ToastUtil
 import com.njp.smartlab.utils.loadsir.FailCallback
 import com.njp.smartlab.utils.loadsir.LoadingCallback
@@ -62,8 +61,12 @@ class LockerFragment : BaseFragment() {
     }
 
     override fun onLazyLoad() {
-        loadService.showCallback(LoadingCallback::class.java)
-        viewModel.getTools()
+        if (viewModel.isFirstLoad) {
+            loadService.showCallback(LoadingCallback::class.java)
+            viewModel.getTools()
+        }else{
+            loadService.showSuccess()
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

@@ -7,17 +7,9 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
         app:lottie_autoPlay="true"
-        app:lottie_colorFilter="#cdcdcd"
-        app:lottie_fileName="broken_stick_error.json" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="网络连接失败，请点击重试"
-        android:textColor="#bfbfbf"
-        android:textSize="20sp" />
+        app:lottie_fileName="404_page.json" />
 
 </LinearLayout>

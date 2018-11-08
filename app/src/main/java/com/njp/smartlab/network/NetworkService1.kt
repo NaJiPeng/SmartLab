@@ -9,7 +9,7 @@ import retrofit2.http.POST
 /**
  * 网络请求接口
  */
-interface NetworkService {
+interface NetworkService1 {
 
     @POST("laboratory/front/user/login")
     @FormUrlEncoded

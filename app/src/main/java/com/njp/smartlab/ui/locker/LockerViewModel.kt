@@ -3,7 +3,6 @@ package com.njp.smartlab.ui.locker
 import com.njp.smartlab.adapter.LockerAdapter
 import com.njp.smartlab.base.BaseViewModel
 import com.njp.smartlab.network.Repository
-import com.njp.smartlab.utils.Logger
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter

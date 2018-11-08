@@ -3,7 +3,6 @@ package com.njp.smartlab.ui.lesson
 import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.databinding.DataBindingUtil
-import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +14,7 @@ import com.njp.smartlab.base.BaseFragment
 import com.njp.smartlab.base.MainActivity
 import com.njp.smartlab.databinding.FragmentLessonBinding
 import com.njp.smartlab.utils.ToastUtil
+import com.njp.smartlab.utils.UserInfoHolder
 import com.njp.smartlab.utils.loadsir.FailCallback
 import com.njp.smartlab.utils.loadsir.LoadingCallback
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
@@ -29,6 +29,7 @@ class LessonFragment : BaseFragment() {
 
     private lateinit var binding: FragmentLessonBinding
     private lateinit var viewModel: LessonViewModel
+    private lateinit var dialog: AlertDialog
     private lateinit var loadService: LoadService<*>
 
     override fun initView(inflater: LayoutInflater, container: ViewGroup?): View {
@@ -39,6 +40,16 @@ class LessonFragment : BaseFragment() {
         loadService = LoadSir.getDefault().register(binding.root) {
             viewModel.getLessons()
         }
+
+        dialog = AlertDialog.Builder(context!!)
+                .setMessage("你还没有登录，是否前去登录？")
+                .setNegativeButton("算了") { dialogInterface: DialogInterface, _: Int ->
+                    dialogInterface.dismiss()
+                }.setPositiveButton("登录") { dialogInterface: DialogInterface, _: Int ->
+                    dialogInterface.dismiss()
+                    (activity as MainActivity).navController.navigate(R.id.action_home_to_login)
+                }
+                .create()
 
         binding.refreshLayout.setColorSchemeResources(R.color.colorPrimary)
 
@@ -54,10 +65,15 @@ class LessonFragment : BaseFragment() {
 
         viewModel.dataAdapter.setListener {
             AlertDialog.Builder(context!!)
-                    .setMessage("是否预约${it.second}?")
-                    .setPositiveButton("预约") { _: DialogInterface, _: Int ->
-                        (activity as MainActivity).loadingDialog.show()
-                        viewModel.choose(it.first)
+                    .setMessage("是否预约${it.name}?")
+                    .setPositiveButton("预约") { dialogInterface: DialogInterface, _: Int ->
+                        dialogInterface.dismiss()
+                        if (UserInfoHolder.getInstance().getUser().value != null) {
+                            (activity as MainActivity).loadingDialog.show()
+                            viewModel.choose(it.activityId)
+                        } else {
+                            dialog.show()
+                        }
                     }.setNegativeButton("取消") { dialogInterface: DialogInterface, _: Int ->
                         dialogInterface.dismiss()
                     }.show()
@@ -69,8 +85,12 @@ class LessonFragment : BaseFragment() {
     }
 
     override fun onLazyLoad() {
-        loadService.showCallback(LoadingCallback::class.java)
-        viewModel.getLessons()
+        if (viewModel.isFirstLoad) {
+            loadService.showCallback(LoadingCallback::class.java)
+            viewModel.getLessons()
+        } else {
+            loadService.showSuccess()
+        }
     }
 
     override fun onDestroy() {

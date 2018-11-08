@@ -2,7 +2,10 @@ package com.njp.smartlab.adapter
 
 import android.databinding.BindingAdapter
 import android.graphics.Color
+import android.support.design.chip.Chip
+import android.support.design.chip.ChipGroup
 import android.support.v7.widget.CardView
+import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -10,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.njp.smartlab.R
 import com.njp.smartlab.bean.ActivityDetail
 import com.njp.smartlab.bean.Manipulation
+import com.youth.banner.Banner
 import com.zhuangfei.timetable.TimetableView
 import com.zhuangfei.timetable.model.Schedule
 import com.zhuangfei.timetable.model.ScheduleEnable
@@ -126,6 +130,35 @@ fun WeekView.setData(source: List<Schedule>, curWeek: Int) {
     curWeek(curWeek)
     showView()
 }
+
+@BindingAdapter("banners")
+fun Banner.setBanners(banners: List<com.njp.smartlab.bean.Banner>?) {
+    banners?.let { images ->
+        setImages(images.map { it.image })
+        setBannerTitles(images.map { it.name })
+        start()
+    }
+}
+
+@BindingAdapter("keywords")
+fun ChipGroup.setKeywords(keywordsString: String) {
+    removeAllViews()
+    val keywords = keywordsString.split(",")
+    keywords.forEach { keyword ->
+        addView(Chip(context).apply {
+            text = keyword
+            chipCornerRadius = 8f
+            chipEndPadding = 0f
+            chipStartPadding = 0f
+        })
+    }
+}
+
+@BindingAdapter("html")
+fun TextView.setHtml(html: String) {
+    text = Html.fromHtml(html, GlideImageGetter(this), null)
+}
+
 
 
 

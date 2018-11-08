@@ -62,6 +62,7 @@ class HomeFragment : BaseFragment() {
      */
     private fun setupViewPager() {
         binding.viewPager.adapter = HomePagerAdapter(childFragmentManager)
+        binding.viewPager.offscreenPageLimit = 3
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {
             }

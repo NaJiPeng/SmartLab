@@ -15,75 +15,77 @@ class Repository private constructor() {
         fun getInstance() = instance ?: Repository().apply { instance = this }
     }
 
-    private val service = NetworkConfig.getInstance().retrofit.create(NetworkService::class.java)
+    private val service1 = NetworkConfig.getInstance().retrofit1.create(NetworkService1::class.java)
+
+    private val service2 = NetworkConfig.getInstance().retrofit2.create(NetworkService2::class.java)
 
     /**
      * 登录
      */
-    fun login(id: String, pwdHash: String) = service.login(id, pwdHash)
+    fun login(id: String, pwdHash: String) = service1.login(id, pwdHash)
 
     /**
      * 注册验证码
      */
-    fun verifyEmail(email: String) = service.verifyEmail(email)
+    fun verifyEmail(email: String) = service1.verifyEmail(email)
 
     /**
      * 注册
      */
     fun register(
             userId: String, pwdHash: String, email: String, name: String, captcha: String
-    ) = service.register(
+    ) = service1.register(
             userId, pwdHash, email, name, captcha
     )
 
     /**
      * 修改密码验证
      */
-    fun changePwdVerify(email: String) = service.changePwdVerify(email)
+    fun changePwdVerify(email: String) = service1.changePwdVerify(email)
 
     /**
      * 修改密码
      */
     fun updatePwd(
             captcha: String, newPwd: String, email: String, id: String
-    ) = service.updatePwd(
+    ) = service1.updatePwd(
             captcha, newPwd, email, id
     )
 
     /**
      * 修改资料
      */
-    fun update(name: String, major: String) = service.update(name, major)
+    fun update(name: String, major: String) = service1.update(name, major)
 
     /**
      * 开门请求
      */
-    fun openDoor() = service.openDoor()
+    fun openDoor() = service1.openDoor()
 
     /**
      * 获取历史操作记录
      */
-    fun getHistory() = service.getHistory()
+    fun getHistory() = service1.getHistory()
 
     /**
      * 获取课程信息
      */
-    fun getLessons() = service.getLessons()
+    fun getLessons() = service1.getLessons()
 
     /**
      * 获取物品信息
      */
-    fun getTools() = service.getTools()
+    fun getTools() = service1.getTools()
 
     /**
      * 选课
      */
-    fun choose(activityId: Int) = service.choose(activityId)
+    fun choose(activityId: Int) = service1.choose(activityId)
 
     /**
      * 我的课程
      */
-    fun getMyLessons() = service.myLessons().map {
+    fun getMyLessons() = service1.myLessons().map {
         val bean = TimeTableDisplayBean(isSuccess = it.success, msg = it.msg, curWeek = it.currWeek)
         if (it.success) {
             val list = ArrayList<Schedule>()
@@ -107,5 +109,20 @@ class Repository private constructor() {
         }
         return@map bean
     }
+
+    /**
+     * 获取头条新闻
+     */
+    fun getBanners() = service2.getBannerNews()
+
+    /**
+     * 获取新闻列表
+     */
+    fun getNews(page: Int) = service2.getNews(page)
+
+    /**
+     * 获取新闻详情
+     */
+    fun getDetail(type: String, url: String) = service2.getDetail(type, url)
 
 }
