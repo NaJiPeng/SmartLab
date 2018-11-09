@@ -38,6 +38,7 @@ class LessonFragment : BaseFragment() {
         binding.viewModel = viewModel
 
         loadService = LoadSir.getDefault().register(binding.root) {
+            loadService.showCallback(LoadingCallback::class.java)
             viewModel.getLessons()
         }
 

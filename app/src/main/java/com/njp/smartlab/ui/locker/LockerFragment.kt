@@ -34,6 +34,7 @@ class LockerFragment : BaseFragment() {
         binding.viewModel = viewModel
 
         loadService = LoadSir.getDefault().register(binding.root) {
+            loadService.showCallback(LoadingCallback::class.java)
             viewModel.getTools()
         }
 

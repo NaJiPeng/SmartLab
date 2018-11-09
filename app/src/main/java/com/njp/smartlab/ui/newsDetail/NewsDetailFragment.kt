@@ -35,6 +35,7 @@ class NewsDetailFragment : BaseFragment() {
         binding.setLifecycleOwner(this)
 
         loadService = LoadSir.getDefault().register(binding.contentLayout) {
+            loadService.showCallback(LoadingCallback::class.java)
             viewModel.getDetail()
         }
 
