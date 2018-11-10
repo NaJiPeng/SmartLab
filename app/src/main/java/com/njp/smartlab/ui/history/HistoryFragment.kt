@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.base.BaseFragment
 import com.njp.smartlab.databinding.FragmentHistoryBinding
-import com.njp.smartlab.base.MainActivity
+import com.njp.smartlab.ui.main.MainActivity
 import com.njp.smartlab.utils.ToastUtil
 import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator

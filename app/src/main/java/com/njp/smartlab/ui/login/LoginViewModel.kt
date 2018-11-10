@@ -23,6 +23,9 @@ class LoginViewModel : BaseViewModel() {
                         {
                             if (it.success) {
                                 it.user.avatarHash = "https://www.gravatar.com/avatar/$it.user.avatarHash?d=retro"
+                                password.value?.let { pwd ->
+                                    it.user.pwdHash = pwd
+                                }
                                 UserInfoHolder.getInstance().saveUser(it.user)
                                 EventBus.getDefault().post(LoginEvent(LoginEvent.loginSuccess))
                             } else {

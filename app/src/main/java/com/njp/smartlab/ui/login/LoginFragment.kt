@@ -2,15 +2,13 @@ package com.njp.smartlab.ui.login
 
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
-import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.base.BaseFragment
 import com.njp.smartlab.databinding.FragmentLoginBinding
-import com.njp.smartlab.base.MainActivity
+import com.njp.smartlab.ui.main.MainActivity
 import com.njp.smartlab.utils.ToastUtil
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

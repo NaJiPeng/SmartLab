@@ -8,7 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentAboutBinding
-import com.njp.smartlab.base.MainActivity
+import com.njp.smartlab.ui.main.MainActivity
+import com.njp.smartlab.utils.getVersionInfo
 
 /**
  * 关于页面
@@ -21,9 +22,12 @@ class AboutFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_about, container, false)
 
 
-        binding.toolbar.setNavigationOnClickListener { _->
+        binding.toolbar.setNavigationOnClickListener { _ ->
             (activity as MainActivity).navController.navigateUp()
         }
+
+        val versionInfo = getVersionInfo()
+        binding.tvVersionInfo.text = "${versionInfo.second} (${versionInfo.first})"
 
         return binding.root
     }

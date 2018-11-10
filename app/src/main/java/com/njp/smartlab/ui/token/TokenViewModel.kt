@@ -11,11 +11,13 @@ import org.greenrobot.eventbus.EventBus
 
 class TokenViewModel : BaseViewModel() {
 
+    var type = ""
+    var boxId = 0
     var isLoading = false
     val bitmap = MutableLiveData<Bitmap>()
 
     fun refresh() {
-        Repository.getInstance().openDoor()
+        Repository.getInstance().hardware(type, boxId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -24,12 +26,12 @@ class TokenViewModel : BaseViewModel() {
                             if (it.success) {
                                 bitmap.value = CodeUtils.createImage(it.uuid, 400, 400, null)
                                 EventBus.getDefault().post(TokenEvent(TokenEvent.tokenSuccess))
-                            }else{
-                                EventBus.getDefault().post(TokenEvent(TokenEvent.tokenFail,it.msg))
+                            } else {
+                                EventBus.getDefault().post(TokenEvent(TokenEvent.tokenFail, it.msg))
                             }
                         },
                         {
-                            isLoading =false
+                            isLoading = false
                             EventBus.getDefault().post(TokenEvent(TokenEvent.tokenFail, "网络连接失败"))
                         }
                 ).let { disposables.add(it) }

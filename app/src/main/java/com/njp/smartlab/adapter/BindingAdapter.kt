@@ -18,6 +18,7 @@ import com.zhuangfei.timetable.TimetableView
 import com.zhuangfei.timetable.model.Schedule
 import com.zhuangfei.timetable.model.ScheduleEnable
 import com.zhuangfei.timetable.view.WeekView
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.max
@@ -159,6 +160,25 @@ fun TextView.setHtml(html: String) {
     text = Html.fromHtml(html, GlideImageGetter(this), null)
 }
 
+@BindingAdapter("versionName")
+fun TextView.setVersionName(versionName: String) {
+    text = "是否更新到${versionName}版本？"
+}
+
+@BindingAdapter("apkSize")
+fun TextView.setApkSize(apkSize: String) {
+    text = "新版本大小：$apkSize"
+}
+
+@BindingAdapter("versionDesc")
+fun TextView.setVersionDesc(versionDesc: String) {
+    text = java.lang.StringBuilder().apply {
+        versionDesc.split(";").forEach {
+            append(it)
+            append("\n")
+        }
+    }.toString()
+}
 
 
 

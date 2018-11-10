@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.databinding.DataBindingUtil
+import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -14,11 +15,13 @@ import com.njp.smartlab.R
 import com.njp.smartlab.adapter.HomePagerAdapter
 import com.njp.smartlab.base.BaseFragment
 import com.njp.smartlab.databinding.FragmentHomeBinding
-import com.njp.smartlab.base.MainActivity
+import com.njp.smartlab.ui.main.MainActivity
 import com.njp.smartlab.network.NetworkConfig
 import com.njp.smartlab.utils.ToastUtil
 import com.njp.smartlab.utils.UserInfoHolder
-import com.tencent.mmkv.MMKV
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * 主页面
@@ -54,6 +57,15 @@ class HomeFragment : BaseFragment() {
         setupNavigationView()
 
         setupToolbar()
+
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
 
@@ -124,7 +136,8 @@ class HomeFragment : BaseFragment() {
                     (activity as MainActivity).navController.navigate(R.id.action_home_to_about)
                 }
                 R.id.update -> {
-                    ToastUtil.getInstance().show("已经是最新版本了")
+                    (activity as MainActivity).loadingDialog.show()
+                    viewModel.checkUpdate()
                 }
                 R.id.logout -> {
                     if (UserInfoHolder.getInstance().getUser().value != null) {
@@ -161,13 +174,33 @@ class HomeFragment : BaseFragment() {
             when (it.itemId) {
                 R.id.token -> {
                     if (UserInfoHolder.getInstance().getUser().value != null) {
-                        (activity as MainActivity).navController.navigate(R.id.action_home_to_token)
+                        (activity as MainActivity).navController.navigate(
+                                R.id.action_home_to_token,
+                                Bundle().apply {
+                                    putString("type", "open")
+                                    putInt("boxId", 0)
+                                }
+                        )
                     } else {
                         dialog.show()
                     }
                 }
             }
             false
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun handleEvent(event: HomeEvent) {
+        when (event.id) {
+            HomeEvent.updateSuccess -> {
+                (activity as MainActivity).loadingDialog.dismiss()
+            }
+            HomeEvent.updateFail -> {
+                (activity as MainActivity).loadingDialog.dismiss()
+                ToastUtil.getInstance().show(event.msg)
+            }
+
         }
     }
 

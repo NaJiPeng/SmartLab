@@ -15,6 +15,7 @@ class UpdateViewModel : BaseViewModel() {
     val email = MutableLiveData<String>()
     val name = MutableLiveData<String>()
     val major = MutableLiveData<String>()
+    var password: String = ""
 
     init {
         UserInfoHolder.getInstance().getUser().value?.let {
@@ -23,6 +24,7 @@ class UpdateViewModel : BaseViewModel() {
             email.value = it.email
             name.value = it.name
             major.value = it.major
+            password = it.pwdHash
         }
     }
 
@@ -34,6 +36,7 @@ class UpdateViewModel : BaseViewModel() {
                         {
                             if (it.success) {
                                 it.user.avatarHash = "https://www.gravatar.com/avatar/$it.user.avatarHash?d=retro"
+                                it.user.pwdHash = password
                                 UserInfoHolder.getInstance().saveUser(it.user)
                                 EventBus.getDefault().post(UpdateEvent(UpdateEvent.updateSuccess))
                             } else {

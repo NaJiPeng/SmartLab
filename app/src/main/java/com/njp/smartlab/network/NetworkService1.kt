@@ -5,6 +5,7 @@ import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 /**
  * 网络请求接口
@@ -56,8 +57,12 @@ interface NetworkService1 {
             @Field("major") major: String
     ): Observable<LoginResponseBody>
 
-    @POST("/laboratory/front/door/open")
-    fun openDoor(): Observable<OpendoorResponseBody>
+    @POST("/laboratory/front/hardware/{type}")
+    @FormUrlEncoded
+    fun hardware(
+            @Path("type") type: String,
+            @Field("boxId") boxId: Int
+    ): Observable<HardWareResponseBody>
 
     @POST("/laboratory/front/manipulate/selectall")
     fun getHistory(): Observable<HistoryResponseBody>
@@ -65,13 +70,13 @@ interface NetworkService1 {
     @POST("laboratory/front/activity/selectall")
     fun getLessons(): Observable<LessonsResponseBody>
 
-    @POST("/laboratory/front/tool/selectall")
+    @POST("/laboratory/front/hardware/selectall")
     fun getTools(): Observable<LockerResponseBody>
 
     @POST("/laboratory/front/activity/choose")
     @FormUrlEncoded
     fun choose(
-            @Field("activityId") activityId : Int
+            @Field("activityId") activityId: Int
     ): Observable<ResponseBody>
 
     @POST("/laboratory/front/activity/myactivity")

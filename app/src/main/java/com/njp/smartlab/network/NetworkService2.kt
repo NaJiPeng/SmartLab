@@ -23,4 +23,7 @@ interface NetworkService2 {
             @Query("url") url: String
     ): Observable<DetailResponseBody>
 
+    @GET("/api/v1.0/version")
+    fun update(): Observable<UpdateResponseBody>
+
 }

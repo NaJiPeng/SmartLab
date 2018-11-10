@@ -12,7 +12,7 @@ class LockerViewModel : BaseViewModel() {
 
     var isFirstLoad = true
 
-    private val dataAdapter = LockerAdapter()
+    val dataAdapter = LockerAdapter()
 
     val adapter = SlideInBottomAnimationAdapter(dataAdapter)
 

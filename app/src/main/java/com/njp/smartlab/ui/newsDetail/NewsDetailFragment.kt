@@ -9,7 +9,7 @@ import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import com.njp.smartlab.R
 import com.njp.smartlab.base.BaseFragment
-import com.njp.smartlab.base.MainActivity
+import com.njp.smartlab.ui.main.MainActivity
 import com.njp.smartlab.databinding.FragmentNewsDetailBinding
 import com.njp.smartlab.utils.ToastUtil
 import com.njp.smartlab.utils.loadsir.FailCallback

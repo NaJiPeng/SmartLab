@@ -58,9 +58,9 @@ class Repository private constructor() {
     fun update(name: String, major: String) = service1.update(name, major)
 
     /**
-     * 开门请求
+     * 硬件操作相关
      */
-    fun openDoor() = service1.openDoor()
+    fun hardware(type: String, boxId: Int) = service1.hardware(type, boxId)
 
     /**
      * 获取历史操作记录
@@ -124,5 +124,10 @@ class Repository private constructor() {
      * 获取新闻详情
      */
     fun getDetail(type: String, url: String) = service2.getDetail(type, url)
+
+    /**
+     * 检查更新
+     */
+    fun update() = service2.update()
 
 }

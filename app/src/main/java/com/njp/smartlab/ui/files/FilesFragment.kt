@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.databinding.FragmentFilesBinding
-import com.njp.smartlab.base.MainActivity
+import com.njp.smartlab.ui.main.MainActivity
 
 /**
  * 课程资源页面

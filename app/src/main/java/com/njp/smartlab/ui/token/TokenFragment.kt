@@ -9,7 +9,7 @@ import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import com.njp.smartlab.R
 import com.njp.smartlab.base.BaseFragment
-import com.njp.smartlab.base.MainActivity
+import com.njp.smartlab.ui.main.MainActivity
 import com.njp.smartlab.databinding.FragmentTokenBinding
 import com.njp.smartlab.utils.ToastUtil
 import com.njp.smartlab.utils.loadsir.ImageErrorCallback
@@ -29,7 +29,10 @@ class TokenFragment : BaseFragment() {
 
     override fun initView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_token, container, false)
-        viewModel = ViewModelProviders.of(this).get(TokenViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(TokenViewModel::class.java).apply {
+            type = arguments?.getString("type") ?: "open"
+            boxId = arguments?.getInt("boxId") ?: 0
+        }
         binding.viewModel = viewModel
         binding.setLifecycleOwner(this)
 

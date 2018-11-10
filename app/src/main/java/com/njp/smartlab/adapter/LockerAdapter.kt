@@ -2,6 +2,7 @@ package com.njp.smartlab.adapter
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,11 @@ import com.njp.smartlab.databinding.ItemLockerBinding
 class LockerAdapter : RecyclerView.Adapter<LockerAdapter.ViewHolder>() {
 
     private val list = ArrayList<Tool>()
+    private lateinit var listener: (Tool) -> Unit
+
+    fun setListener(listener: (Tool) -> Unit) {
+        this.listener = listener
+    }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val itemView = LayoutInflater.from(p0.context)
@@ -25,6 +31,10 @@ class LockerAdapter : RecyclerView.Adapter<LockerAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         p0.binding?.tool = list[p1]
+        p0.itemView.setOnClickListener {
+            Log.i("wwww", "onclick$p1")
+            listener.invoke(list[p1])
+        }
     }
 
     fun setData(data: List<Tool>) {

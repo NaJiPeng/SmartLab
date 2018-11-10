@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.base.BaseFragment
 import com.njp.smartlab.databinding.FragmentRegisterBinding
-import com.njp.smartlab.base.MainActivity
+import com.njp.smartlab.ui.main.MainActivity
 import com.njp.smartlab.ui.login.LoginEvent
 import com.njp.smartlab.utils.ToastUtil
 import org.greenrobot.eventbus.EventBus

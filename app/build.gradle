@@ -12,8 +12,8 @@ android {
         applicationId "com.njp.smartlab"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 181104
-        versionName "1.0.2"
+        versionCode 181110
+        versionName "1.1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -90,4 +90,10 @@ dependencies {
 
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
+
+    implementation 'com.liulishuo.okdownload:okdownload:1.0.5'
+    implementation 'com.liulishuo.okdownload:sqlite:1.0.5'
+    implementation 'com.liulishuo.okdownload:okhttp:1.0.5'
+
+    implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
 }
