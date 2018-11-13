@@ -130,4 +130,9 @@ class Repository private constructor() {
      */
     fun update() = service2.update()
 
+    /**
+     * 获取课程资源
+     */
+    fun getResource() = service2.resource()
+
 }

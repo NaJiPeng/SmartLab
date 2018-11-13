@@ -10,6 +10,8 @@
         android:layout_height="match_parent"
         android:scaleType="centerInside"
         app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_repeatMode="reverse"
         app:lottie_fileName="404_page.json" />
 
 </LinearLayout>

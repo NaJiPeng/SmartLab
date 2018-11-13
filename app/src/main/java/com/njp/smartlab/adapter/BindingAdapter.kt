@@ -180,5 +180,22 @@ fun TextView.setVersionDesc(versionDesc: String) {
     }.toString()
 }
 
+@BindingAdapter("fileType")
+fun ImageView.setFileType(name: String) {
+    Glide.with(this)
+            .load(when (name.split(".").last()) {
+                "jpg", "png", "jpeg", "bmp", "gif" -> R.drawable.ic_image
+                "rar", "zip", "7z" -> R.drawable.ic_compressed
+                "mp3", "wav" -> R.drawable.ic_audio
+                "mp4", "avi", "flv", "mpg", "vob", "wmv", "mkv" -> R.drawable.ic_video
+                "ppt", "pptx" -> R.drawable.ic_ppt
+                "doc", "docx" -> R.drawable.ic_doc
+                "xls", "xlsx" -> R.drawable.ic_excel
+                "exe" -> R.drawable.ic_exe
+                "apk" -> R.drawable.ic_apk
+                else -> R.drawable.ic_unknow_file
+            }).into(this)
+}
+
 
 

@@ -1,5 +1,7 @@
 package com.njp.smartlab.ui.home
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
@@ -19,6 +21,7 @@ import com.njp.smartlab.ui.main.MainActivity
 import com.njp.smartlab.network.NetworkConfig
 import com.njp.smartlab.utils.ToastUtil
 import com.njp.smartlab.utils.UserInfoHolder
+import com.tbruyelle.rxpermissions2.RxPermissions
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -31,12 +34,15 @@ class HomeFragment : BaseFragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
     private lateinit var dialog: AlertDialog
+    private lateinit var rxPermissions: RxPermissions
 
     override fun initView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         binding.viewModel = viewModel
         binding.setLifecycleOwner(this)
+
+        rxPermissions = RxPermissions(this)
 
         dialog = AlertDialog.Builder(context)
                 .setMessage("你还没有登录，是否前去登录？")
@@ -57,6 +63,8 @@ class HomeFragment : BaseFragment() {
         setupNavigationView()
 
         setupToolbar()
+
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
@@ -107,6 +115,7 @@ class HomeFragment : BaseFragment() {
     /**
      * 配置侧滑菜单
      */
+    @SuppressLint("CheckResult")
     private fun setupNavigationView() {
         binding.navigationView.setNavigationItemSelectedListener {
             binding.drawerLayout.closeDrawer(Gravity.START)
@@ -120,7 +129,14 @@ class HomeFragment : BaseFragment() {
                 }
                 R.id.files -> {
                     if (UserInfoHolder.getInstance().getUser().value != null) {
-                        (activity as MainActivity).navController.navigate(R.id.action_home_to_files)
+                        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                .subscribe { granted ->
+                                    if (granted) {
+                                        (activity as MainActivity).navController.navigate(R.id.action_home_to_files)
+                                    } else {
+                                        ToastUtil.getInstance().show("没有读写手机存储权限")
+                                    }
+                                }
                     } else {
                         dialog.show()
                     }

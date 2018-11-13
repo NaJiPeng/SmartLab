@@ -26,4 +26,7 @@ interface NetworkService2 {
     @GET("/api/v1.0/version")
     fun update(): Observable<UpdateResponseBody>
 
+    @GET("/api/v1.0/resource")
+    fun resource(): Observable<ResourceResponseBody>
+
 }

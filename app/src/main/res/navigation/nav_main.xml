@@ -74,7 +74,7 @@
 
     <fragment
         android:id="@+id/files"
-        android:name="com.njp.smartlab.ui.files.FilesFragment"
+        android:name="com.njp.smartlab.ui.resource.ResourceFragment"
         tools:layout="@layout/fragment_files" />
 
     <fragment
