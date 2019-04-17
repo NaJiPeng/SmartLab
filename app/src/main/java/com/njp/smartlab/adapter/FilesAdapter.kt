@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.njp.smartlab.R
 import com.njp.smartlab.bean.File
 import com.njp.smartlab.databinding.ItemFileBinding
+import com.njp.smartlab.utils.ToastUtil
 
 class FilesAdapter : RecyclerView.Adapter<FilesAdapter.ViewHolder>() {
 
@@ -25,6 +26,9 @@ class FilesAdapter : RecyclerView.Adapter<FilesAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         p0.binding?.file = list[p1]
+        p0.itemView.setOnClickListener {
+            ToastUtil.getInstance().show("你暂时没有权限下载此文件，请联系管理员授权")
+        }
     }
 
     fun setData(data: List<File>) {
