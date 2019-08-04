@@ -1,6 +1,6 @@
 package com.njp.smartlab.ui.register
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.njp.smartlab.base.BaseViewModel
 import com.njp.smartlab.network.Repository
 import io.reactivex.android.schedulers.AndroidSchedulers

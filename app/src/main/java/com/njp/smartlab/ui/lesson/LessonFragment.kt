@@ -1,9 +1,9 @@
 package com.njp.smartlab.ui.lesson
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.content.DialogInterface
-import android.databinding.DataBindingUtil
-import android.support.v7.app.AlertDialog
+import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

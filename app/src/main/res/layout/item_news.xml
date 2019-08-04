@@ -33,12 +33,12 @@
             android:layout_height="wrap_content"
             android:text="@{news.date}" />
 
-        <android.support.design.chip.ChipGroup
+        <com.google.android.material.chip.ChipGroup
             keywords="@{news.keys}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </android.support.design.chip.ChipGroup>
+        </com.google.android.material.chip.ChipGroup>
 
         <View
             android:layout_width="match_parent"

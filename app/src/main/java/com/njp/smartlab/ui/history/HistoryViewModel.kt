@@ -1,6 +1,6 @@
 package com.njp.smartlab.ui.history
 
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.DiffUtil
 import com.njp.smartlab.adapter.HistoryAdapter
 import com.njp.smartlab.base.BaseViewModel
 import com.njp.smartlab.bean.Manipulation

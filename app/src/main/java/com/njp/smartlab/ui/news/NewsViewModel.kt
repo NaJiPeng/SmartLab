@@ -1,6 +1,6 @@
 package com.njp.smartlab.ui.news
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import android.util.Log
 import com.njp.smartlab.adapter.NewsAdapter
 import com.njp.smartlab.base.BaseViewModel

@@ -1,10 +1,10 @@
 package com.njp.smartlab.adapter
 
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.graphics.Color
-import android.support.design.chip.Chip
-import android.support.design.chip.ChipGroup
-import android.support.v7.widget.CardView
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import androidx.cardview.widget.CardView
 import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView

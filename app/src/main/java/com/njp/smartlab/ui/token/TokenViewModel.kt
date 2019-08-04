@@ -1,6 +1,6 @@
 package com.njp.smartlab.ui.token
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import android.graphics.Bitmap
 import com.njp.smartlab.base.BaseViewModel
 import com.njp.smartlab.network.Repository

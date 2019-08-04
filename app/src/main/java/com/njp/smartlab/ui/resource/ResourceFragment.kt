@@ -1,8 +1,8 @@
 package com.njp.smartlab.ui.resource
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import androidx.databinding.DataBindingUtil
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

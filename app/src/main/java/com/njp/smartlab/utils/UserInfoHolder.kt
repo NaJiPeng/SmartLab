@@ -1,6 +1,6 @@
 package com.njp.smartlab.utils
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.njp.smartlab.bean.User
 import com.tencent.mmkv.MMKV

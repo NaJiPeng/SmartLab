@@ -3,11 +3,11 @@ package com.njp.smartlab.ui.home
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.content.DialogInterface
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View

@@ -1,7 +1,7 @@
 package com.njp.smartlab.ui.update
 
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import androidx.databinding.DataBindingUtil
 import android.view.*
 import com.njp.smartlab.R
 import com.njp.smartlab.base.BaseFragment

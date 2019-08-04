@@ -1,6 +1,6 @@
 package com.njp.smartlab.ui.login
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.njp.smartlab.base.BaseViewModel
 import com.njp.smartlab.network.Repository
 import com.njp.smartlab.utils.UserInfoHolder

@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context=".ui.splash.SplashActivity">
+
+    <TextView
+        android:id="@+id/tv_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:padding="20dp"
+        android:text="SmartLab"
+        android:textColor="#3c8ce7"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_slogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:padding="10dp"
+        android:translationY="-5000dp"
+        android:paddingEnd="30dp"
+        android:text="让实验教学更加简单"
+        android:textSize="30sp" />
 
     <ImageView
         android:id="@+id/img_splash"
@@ -12,4 +36,4 @@
         android:layout_height="match_parent"
         android:src="@drawable/splash" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
