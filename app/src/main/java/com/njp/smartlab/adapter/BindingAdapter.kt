@@ -16,14 +16,11 @@ import com.njp.smartlab.bean.Manipulation
 import com.youth.banner.Banner
 import com.zhuangfei.timetable.TimetableView
 import com.zhuangfei.timetable.model.Schedule
-import com.zhuangfei.timetable.model.ScheduleEnable
 import com.zhuangfei.timetable.view.WeekView
-import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.max
-
 @BindingAdapter("image")
+
 fun ImageView.setImage(image: Any?) {
     Glide.with(this)
             .load(image)
@@ -143,6 +140,7 @@ fun Banner.setBanners(banners: List<com.njp.smartlab.bean.Banner>?) {
 
 @BindingAdapter("keywords")
 fun ChipGroup.setKeywords(keywordsString: String) {
+    if (keywordsString.isEmpty()) return
     removeAllViews()
     val keywords = keywordsString.split(",")
     keywords.forEach { keyword ->

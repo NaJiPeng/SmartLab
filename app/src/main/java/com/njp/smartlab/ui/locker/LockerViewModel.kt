@@ -1,5 +1,6 @@
 package com.njp.smartlab.ui.locker
 
+import android.util.Log
 import com.njp.smartlab.adapter.LockerAdapter
 import com.njp.smartlab.base.BaseViewModel
 import com.njp.smartlab.network.Repository

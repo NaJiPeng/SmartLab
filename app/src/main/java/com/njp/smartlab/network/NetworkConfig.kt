@@ -29,7 +29,7 @@ class NetworkConfig {
 
     val retrofit1 = Retrofit.Builder()
             .client(client)
-            .baseUrl("http://47.106.34.209/")
+            .baseUrl("http://47.106.34.209:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

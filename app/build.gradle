@@ -9,11 +9,10 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.njp.smartlab"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 190117
-        versionName "1.1.5"
+        versionCode 190801
+        versionName "1.1.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -98,4 +97,6 @@ dependencies {
     implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
 
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+
+//    implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
 }
