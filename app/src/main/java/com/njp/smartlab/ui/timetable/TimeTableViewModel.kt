@@ -1,5 +1,6 @@
 package com.njp.smartlab.ui.timetable
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.njp.smartlab.base.BaseViewModel
 import com.njp.smartlab.network.Repository

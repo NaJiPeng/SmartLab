@@ -91,18 +91,20 @@ class Repository private constructor() {
             val list = ArrayList<Schedule>()
             it.lessions.forEach { lesson ->
                 lesson.activityDetailResult.activityDetails.forEach { detail ->
-                    list.add(Schedule().apply {
-                        name = lesson.activityDetailResult.name
-                        room = detail.location
-                        teacher = lesson.activityDetailResult.teacher
-                        weekList = detail.week.split(",").map { week ->
-                            week.toInt()
-                        }
-                        start = detail.activityOrder.split(",")[0].toInt()
-                        step = detail.activityOrder.split(",").size
-                        day = detail.day.toInt()
-                        colorRandom = lesson.activityDetailResult.type
-                    })
+                    detail.day.split(",").forEach { day ->
+                        list.add(Schedule().apply {
+                            name = lesson.activityDetailResult.name
+                            room = detail.location
+                            teacher = lesson.activityDetailResult.teacher
+                            weekList = detail.week.split(",").map { week ->
+                                week.toInt()
+                            }
+                            start = detail.activityOrder.split(",")[0].toInt()
+                            step = detail.activityOrder.split(",").size
+                            this.day = day.toInt()
+                            colorRandom = detail.activityId
+                        })
+                    }
                 }
             }
             bean.data = list

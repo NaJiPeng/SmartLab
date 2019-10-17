@@ -9,6 +9,7 @@ import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.njp.smartlab.R
 import com.njp.smartlab.bean.ActivityDetail
@@ -31,7 +32,12 @@ fun ImageView.setImage(image: Any?) {
 fun ImageView.setUrl(url: Any?) {
     Glide.with(this)
             .load(url)
-            .apply(RequestOptions().error(R.drawable.ic_account))
+            .apply(
+                    RequestOptions()
+                            .error(R.drawable.ic_account)
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            )
             .into(this)
 }
 

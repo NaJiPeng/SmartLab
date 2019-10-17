@@ -17,7 +17,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:navigationIcon="@drawable/ic_back"
-                app:title="关于">
+                app:title="关于我们">
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="由于比赛主办方要求暂时隐藏此项"
+                android:text="那继鹏（大连理工大学）\n李英平（大连理工大学）\n赵家诚（大连理工大学）"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
@@ -84,13 +84,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="由于比赛主办方要求暂时隐藏此项"
+                android:enabled="true"
+                android:focusable="true"
+                android:longClickable="true"
+                android:text="https://github.com/NaJiPeng/SmartLab"
                 android:textColor="@color/colorPrimary"
+                android:textIsSelectable="true"
                 android:textSize="15sp" />
 
 
         </LinearLayout>
-
 
     </LinearLayout>
 

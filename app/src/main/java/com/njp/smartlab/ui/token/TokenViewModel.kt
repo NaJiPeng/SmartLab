@@ -2,6 +2,7 @@ package com.njp.smartlab.ui.token
 
 import androidx.lifecycle.MutableLiveData
 import android.graphics.Bitmap
+import android.util.Log
 import com.njp.smartlab.base.BaseViewModel
 import com.njp.smartlab.network.Repository
 import com.uuzuche.lib_zxing.activity.CodeUtils
@@ -31,6 +32,7 @@ class TokenViewModel : BaseViewModel() {
                             }
                         },
                         {
+                            Log.e("mmmm", "error", it)
                             isLoading = false
                             EventBus.getDefault().post(TokenEvent(TokenEvent.tokenFail, "网络连接失败"))
                         }
